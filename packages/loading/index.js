@@ -1,5 +1,5 @@
 import BaseComponent from "@packages/base";
-import style from './index.css';
+import style from './index.css?inline' assert { type: 'css' } ;
 
 export default class NtLoading extends BaseComponent {
   static componentName = 'nt-loading';
