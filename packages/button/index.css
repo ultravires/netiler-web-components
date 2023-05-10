@@ -1,0 +1,271 @@
+:host {
+  --nt-button-primary-color: var(--primary-color);
+
+  --nt-button-primary-color-opacity-90: color-mix(in srgb, var(--nt-button-primary-color), transparent 90%);
+  --nt-button-primary-color-opacity-80: color-mix(in srgb, var(--nt-button-primary-color), transparent 80%);
+  --nt-button-primary-color-opacity-70: color-mix(in srgb, var(--nt-button-primary-color), transparent 70%);
+  --nt-button-primary-color-opacity-60: color-mix(in srgb, var(--nt-button-primary-color), transparent 60%);
+  --nt-button-primary-color-opacity-50: color-mix(in srgb, var(--nt-button-primary-color), transparent 50%);
+  --nt-button-primary-color-opacity-40: color-mix(in srgb, var(--nt-button-primary-color), transparent 40%);
+  --nt-button-primary-color-opacity-30: color-mix(in srgb, var(--nt-button-primary-color), transparent 30%);
+  --nt-button-primary-color-opacity-20: color-mix(in srgb, var(--nt-button-primary-color), transparent 20%);
+  --nt-button-primary-color-opacity-10: color-mix(in srgb, var(--nt-button-primary-color), transparent 10%);
+
+  --nt-button-primary-color-lighten-90: color-mix(in srgb, var(--nt-button-primary-color), #fff 90%);
+  --nt-button-primary-color-lighten-80: color-mix(in srgb, var(--nt-button-primary-color), #fff 80%);
+  --nt-button-primary-color-lighten-70: color-mix(in srgb, var(--nt-button-primary-color), #fff 70%);
+  --nt-button-primary-color-lighten-60: color-mix(in srgb, var(--nt-button-primary-color), #fff 60%);
+  --nt-button-primary-color-lighten-50: color-mix(in srgb, var(--nt-button-primary-color), #fff 50%);
+  --nt-button-primary-color-lighten-40: color-mix(in srgb, var(--nt-button-primary-color), #fff 40%);
+  --nt-button-primary-color-lighten-30: color-mix(in srgb, var(--nt-button-primary-color), #fff 30%);
+  --nt-button-primary-color-lighten-20: color-mix(in srgb, var(--nt-button-primary-color), #fff 20%);
+  --nt-button-primary-color-lighten-10: color-mix(in srgb, var(--nt-button-primary-color), #fff 10%);
+
+  --nt-button-primary-color-darken-90: color-mix(in srgb, var(--nt-button-primary-color), #000 90%);
+  --nt-button-primary-color-darken-80: color-mix(in srgb, var(--nt-button-primary-color), #000 80%);
+  --nt-button-primary-color-darken-70: color-mix(in srgb, var(--nt-button-primary-color), #000 70%);
+  --nt-button-primary-color-darken-60: color-mix(in srgb, var(--nt-button-primary-color), #000 60%);
+  --nt-button-primary-color-darken-50: color-mix(in srgb, var(--nt-button-primary-color), #000 50%);
+  --nt-button-primary-color-darken-40: color-mix(in srgb, var(--nt-button-primary-color), #000 40%);
+  --nt-button-primary-color-darken-30: color-mix(in srgb, var(--nt-button-primary-color), #000 30%);
+  --nt-button-primary-color-darken-20: color-mix(in srgb, var(--nt-button-primary-color), #000 20%);
+  --nt-button-primary-color-darken-10: color-mix(in srgb, var(--nt-button-primary-color), #000 10%);
+
+  --nt-button-height: var(--height-base);
+  --nt-button-background-color: var(--color-white);
+  --nt-button-border-color: var(--border-color);
+  --nt-button-border-radius: var(--radius-sm);
+  --nt-button-text-color: var(--text-color);
+  --nt-button-disabled-text-color: var(--placeholder-text-color);
+  --nt-button-disabled-background-color: var(--nt-button-primary-color-lighten-50);
+}
+
+/* 默认 */
+:host #button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: var(--nt-button-height);
+  width: -webkit-fill-available;
+  line-height: 1;
+  padding: 4px 15px;
+  border: 1px solid var(--nt-button-border-color);
+  border-radius: var(--nt-button-border-radius);
+  background-color: var(--nt-button-background-color);
+  color: var(--nt-button-text-color);
+  font-size: var(--font-size-md);
+  outline: none;
+  box-sizing: border-box;
+}
+
+:host #button:hover {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-text-color: var(--nt-button-primary-color);
+  z-index: 1;
+}
+
+:host #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color-darken-20);
+  --nt-button-text-color: var(--nt-button-primary-color-darken-20);
+}
+
+/* 风格 */
+:host([type=primary]) #button {
+  --nt-button-background-color: var(--nt-button-primary-color);
+  --nt-button-border-color: var(--nt-button-primary-color);
+  --nt-button-text-color: #fff;
+}
+
+:host([type=primary]) #button:hover {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-text-color: #fff;
+}
+
+:host([type=primary]) #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-darken-20);
+  --nt-button-border-color: var(--nt-button-primary-color-darken-20);
+  --nt-button-text-color: #fff;
+}
+
+:host([type=plain]) #button {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-text-color: var(--nt-button-primary-color);
+}
+
+:host([type=plain]) #button:hover {
+  --nt-button-background-color: var(--nt-button-primary-color);
+  --nt-button-text-color: #fff;
+}
+
+:host([type=plain]) #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-darken-20);
+  --nt-button-text-color: #fff;
+}
+
+:host([type=dashed]) #button {
+  --nt-button-background-color: transparent;
+  --nt-button-border-color: var(--border-color);
+  --nt-button-text-color: var(--text-color);
+  border-style: dashed;
+}
+
+:host([type=dashed]) #button:hover {
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-text-color: var(--nt-button-primary-color);
+}
+
+:host([type=dashed]) #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color);
+  --nt-button-text-color: var(--nt-button-primary-color-darken-20);
+}
+
+:host([type=flat]) #button {
+  --nt-button-background-color: transparent;
+  --nt-button-border-color: transparent;
+  --nt-button-text-color: var(--text-color);
+}
+
+:host([type=flat]) #button:hover {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-90);
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-90);
+  --nt-button-text-color: var(--nt-button-primary-color-lighten-10);
+}
+
+:host([type=flat]) #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-text-color: var(--nt-button-primary-color-darken-20);
+}
+
+:host([type=link]) #button {
+  --nt-button-background-color: transparent;
+  --nt-button-border-color: transparent;
+  --nt-button-text-color: var(--nt-button-primary-color);
+  cursor: pointer;
+}
+
+:host([type=link]) #button:hover {
+  --nt-button-text-color: var(--nt-button-primary-color-lighten-20);
+}
+
+:host([type=link]) #button:active {
+  --nt-button-text-color: var(--nt-button-primary-color-darken-20);
+}
+
+/* 色彩 */
+:host([color=primary]) {
+  --nt-button-primary-color: var(--primary-color);
+}
+
+:host([color=success]) {
+  --nt-button-primary-color: var(--success-color);
+}
+
+:host([color=warning]) {
+  --nt-button-primary-color: var(--warning-color);
+}
+
+:host([color=danger]) {
+  --nt-button-primary-color: var(--danger-color);
+}
+
+:host(:not([color])) {
+  --nt-button-primary-color: #444;
+}
+
+/* 幽灵 */
+:host([ghost]) #button {
+  --nt-button-primary-color: var(--nt-button-primary-color-opacity-20);
+}
+
+:host([ghost]) #button:hover {
+  --nt-button-primary-color: var(--nt-button-primary-color-opacity-20);
+}
+
+:host([ghost]) #button:active {
+  --nt-button-primary-color: var(--nt-button-primary-color-opacity-50);
+}
+
+:host([ghost]:where([type=dashed], [type=flat])) #button {
+  --nt-button-text-color: #fff;
+}
+
+/* 形状 */
+:host(:empty) #button {
+  padding: 0;
+  width: var(--nt-button-height);
+}
+
+:host([round=sm]) #button {
+  --nt-button-border-radius: var(--radius-sm);
+}
+
+:host([round=md]) #button {
+  --nt-button-border-radius: var(--radius-md);
+}
+
+:host([round=lg]) #button {
+  --nt-button-border-radius: var(--radius-lg);
+}
+
+:host([round=round]) #button {
+  --nt-button-border-radius: var(--radius-round);
+}
+
+:host([round=circle]) #button {
+  --nt-button-border-radius: var(--radius-circle);
+  padding: 0;
+  width: var(--nt-button-height);
+}
+
+/* 块状 */
+:host([block]) {
+  width: -webkit-fill-available;
+}
+
+/* 尺寸 */
+:host([size=small]) #button {
+  --nt-button-height: var(--height-sm);
+  font-size: var(--font-size-sm);
+  padding: 0 7px;
+}
+
+:host([size=large]) #button {
+  --nt-button-height: var(--height-lg);
+  font-size: var(--font-size-lg);
+  padding: 6px 15px;
+}
+
+/* 禁用 */
+:host([disabled]) #button,
+:host([disabled]) #button:hover,
+:host([disabled]) #button:active {
+  --nt-button-background-color: var(--nt-button-disabled-background-color);
+  --nt-button-text-color: var(--nt-button-disabled-text-color);
+  cursor: not-allowed;
+}
+
+:host([disabled]) #button > * {
+  pointer-events: none;
+}
+
+:host([disabled]:not([type=primary])) #button,
+:host([disabled]:not([type=primary])) #button:hover,
+:host([disabled]:not([type=primary])) #button:active {
+  --nt-button-disabled-background-color: transparent;
+  --nt-button-disabled-text-color: var(--nt-button-primary-color-lighten-50);
+}
+
+:host([disabled][type=primary]) #button,
+:host([disabled][type=primary]) #button:hover,
+:host([disabled][type=primary]) #button:active {
+  --nt-button-disabled-background-color: var(--nt-button-primary-color-lighten-50);
+  --nt-button-disabled-text-color: #fff;
+}

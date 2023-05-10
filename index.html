@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netiler UI</title>
+  <link rel="stylesheet" href="./packages/theme/default/variable.css">
+  <style>
+    html {
+      background-color: #f4f4f4;
+    }
+    body {
+      margin: 0;
+    }
+    .container {
+      width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-end {
+      align-items: end;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .my-4 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .border {
+      border-width: 1px;
+      border-color: #d9d9d9;
+    }
+
+    .border-dashed {
+      border-style: dashed;
+    }
+
+  </style>
+</head>
+<body>
+  <section class="container">
+    <h2>按钮组件</h2>
+    <h3>风格</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button>默认</nt-button>
+      <nt-button type="primary">主要</nt-button>
+      <nt-button type="plain">朴素</nt-button>
+      <nt-button type="dashed">虚线</nt-button>
+      <nt-button type="flat">扁平</nt-button>
+      <nt-button type="link">链接</nt-button>
+    </div>
+    <h3>色彩</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button color="primary">主要</nt-button>
+      <nt-button color="success">成功</nt-button>
+      <nt-button color="warning">警告</nt-button>
+      <nt-button color="danger">危险</nt-button>
+      <nt-button color="#636AE7">自定义</nt-button>
+      <nt-button>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary">主要</nt-button>
+      <nt-button type="primary" color="success">成功</nt-button>
+      <nt-button type="primary" color="warning">警告</nt-button>
+      <nt-button type="primary" color="danger">危险</nt-button>
+      <nt-button type="primary" color="#636AE7">自定义</nt-button>
+      <nt-button type="primary">默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="plain" color="primary">主要</nt-button>
+      <nt-button type="plain" color="success">成功</nt-button>
+      <nt-button type="plain" color="warning">警告</nt-button>
+      <nt-button type="plain" color="danger">危险</nt-button>
+      <nt-button type="plain" color="#636AE7">自定义</nt-button>
+      <nt-button type="plain">默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="dashed" color="primary">主要</nt-button>
+      <nt-button type="dashed" color="success">成功</nt-button>
+      <nt-button type="dashed" color="warning">警告</nt-button>
+      <nt-button type="dashed" color="danger">危险</nt-button>
+      <nt-button type="dashed" color="#636AE7">自定义</nt-button>
+      <nt-button type="dashed">默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="flat" color="primary">主要</nt-button>
+      <nt-button type="flat" color="success">成功</nt-button>
+      <nt-button type="flat" color="warning">警告</nt-button>
+      <nt-button type="flat" color="danger">危险</nt-button>
+      <nt-button type="flat" color="#636AE7">自定义</nt-button>
+      <nt-button type="flat">默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="link" color="primary">主要</nt-button>
+      <nt-button type="link" color="success">成功</nt-button>
+      <nt-button type="link" color="warning">警告</nt-button>
+      <nt-button type="link" color="danger">危险</nt-button>
+      <nt-button type="link" color="#636AE7">自定义</nt-button>
+      <nt-button type="link">默认</nt-button>
+    </div>
+    <h3>禁用</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary" disabled>主要</nt-button>
+      <nt-button type="primary" color="success" disabled>成功</nt-button>
+      <nt-button type="primary" color="warning" disabled>警告</nt-button>
+      <nt-button type="primary" color="danger" disabled>危险</nt-button>
+      <nt-button type="primary" disabled>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="plain" color="primary" disabled>主要</nt-button>
+      <nt-button type="plain" color="success" disabled>成功</nt-button>
+      <nt-button type="plain" color="warning" disabled>警告</nt-button>
+      <nt-button type="plain" color="danger" disabled>危险</nt-button>
+      <nt-button type="plain" disabled>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="dashed" color="primary" disabled>主要</nt-button>
+      <nt-button type="dashed" color="success" disabled>成功</nt-button>
+      <nt-button type="dashed" color="warning" disabled>警告</nt-button>
+      <nt-button type="dashed" color="danger" disabled>危险</nt-button>
+      <nt-button type="dashed" disabled>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="flat" color="primary" disabled>主要</nt-button>
+      <nt-button type="flat" color="success" disabled>成功</nt-button>
+      <nt-button type="flat" color="warning" disabled>警告</nt-button>
+      <nt-button type="flat" color="danger" disabled>危险</nt-button>
+      <nt-button type="flat" disabled>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="link" color="primary" disabled>主要</nt-button>
+      <nt-button type="link" color="success" disabled>成功</nt-button>
+      <nt-button type="link" color="warning" disabled>警告</nt-button>
+      <nt-button type="link" color="danger" disabled>危险</nt-button>
+      <nt-button type="link" disabled>默认</nt-button>
+    </div>
+    <h3>幽灵</h3>
+    <div class="p-4" style="background-color: #1f1f1f;">
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button color="primary" ghost>主要</nt-button>
+        <nt-button color="success" ghost>成功</nt-button>
+        <nt-button color="warning" ghost>警告</nt-button>
+        <nt-button color="danger" ghost>危险</nt-button>
+        <nt-button ghost>默认</nt-button>
+        <nt-button ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="primary" color="primary" ghost>主要</nt-button>
+        <nt-button type="primary" color="success" ghost>成功</nt-button>
+        <nt-button type="primary" color="warning" ghost>警告</nt-button>
+        <nt-button type="primary" color="danger" ghost>危险</nt-button>
+        <nt-button type="primary" ghost>默认</nt-button>
+        <nt-button type="primary" ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="plain" color="primary" ghost>主要</nt-button>
+        <nt-button type="plain" color="success" ghost>成功</nt-button>
+        <nt-button type="plain" color="warning" ghost>警告</nt-button>
+        <nt-button type="plain" color="danger" ghost>危险</nt-button>
+        <nt-button type="plain" ghost>默认</nt-button>
+        <nt-button type="plain" ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="dashed" color="primary" ghost>主要</nt-button>
+        <nt-button type="dashed" color="success" ghost>成功</nt-button>
+        <nt-button type="dashed" color="warning" ghost>警告</nt-button>
+        <nt-button type="dashed" color="danger" ghost>危险</nt-button>
+        <nt-button type="dashed" ghost>默认</nt-button>
+        <nt-button type="dashed" ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="flat" color="primary" ghost>主要</nt-button>
+        <nt-button type="flat" color="success" ghost>成功</nt-button>
+        <nt-button type="flat" color="warning" ghost>警告</nt-button>
+        <nt-button type="flat" color="danger" ghost>危险</nt-button>
+        <nt-button type="flat" ghost>默认</nt-button>
+        <nt-button type="flat" ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="link" color="primary" ghost>主要</nt-button>
+        <nt-button type="link" color="success" ghost>成功</nt-button>
+        <nt-button type="link" color="warning" ghost>警告</nt-button>
+        <nt-button type="link" color="danger" ghost>危险</nt-button>
+        <nt-button type="link" ghost>默认</nt-button>
+        <nt-button type="link" ghost disabled>禁用</nt-button>
+      </div>
+    </div>
+    <h3>形状</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary" round="circle">👻</nt-button>
+      <nt-button type="primary" color="primary" round="round">圆角</nt-button>
+      <nt-button type="primary" color="primary">正常</nt-button>
+    </div>
+    <h3>尺寸</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary" size="small">小尺寸</nt-button>
+      <nt-button type="primary" color="primary">原尺寸</nt-button>
+      <nt-button type="primary" color="primary" size="large">大尺寸</nt-button>
+    </div>
+    <h3>块状</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary" round="round" block>圆角</nt-button>
+      <nt-button type="primary" color="primary" block>正常</nt-button>
+    </div>
+    <h3>事件</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button id="button1" type="primary" color="primary" block>弹窗</nt-button>
+      <nt-button id="button2" type="primary" color="primary" block disabled>禁止</nt-button>
+    </div>
+    <h3>加载</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="primary" color="primary" loading>加载</nt-button>
+    </div>
+    <h3>按钮组</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button-group>
+        <nt-button type="dashed" color="primary">上</nt-button>
+        <nt-button type="dashed" color="primary">中</nt-button>
+        <nt-button type="dashed" color="primary">下</nt-button>
+      </nt-button-group>
+      <nt-button-group>
+        <nt-button type="primary" color="primary" round="md">上</nt-button>
+        <nt-button type="primary" color="primary">中</nt-button>
+        <nt-button type="primary" color="primary" round="md">下</nt-button>
+      </nt-button-group>
+      <nt-button-group>
+        <nt-button type="primary" color="success" round="lg">上</nt-button>
+        <nt-button type="primary" color="primary">中</nt-button>
+        <nt-button type="primary" color="danger" round="lg">下</nt-button>
+      </nt-button-group>
+      <nt-button-group>
+        <nt-button type="primary" color="success" round="round">保存</nt-button>
+        <nt-button type="primary" color="primary">编辑</nt-button>
+        <nt-button type="primary" color="danger" round="round">删除</nt-button>
+      </nt-button-group>
+    </div>
+
+    <h2>图标组件</h2>
+    <h3>使用</h3>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="dashed" color="primary" round="round" size="large">
+        <nt-icon name="praise" size="20"></nt-icon>
+        点赞
+      </nt-button>
+      <nt-button type="dashed" color="primary" round="round" size="large">
+        <nt-icon name="wallet" size="20"></nt-icon>
+        投币
+      </nt-button>
+      <nt-button type="dashed" color="primary" round="round" size="large">
+        <nt-icon name="favorite" size="20"></nt-icon>
+        关注
+      </nt-button>
+    </div>
+    <h3>尺寸</h3>
+    <div class="flex items-end gap-4 my-4 p-4 border border-dashed">
+      <nt-icon name="wallet" size="20"></nt-icon>
+      <nt-icon name="wallet" size="40"></nt-icon>
+      <nt-icon name="wallet" size="60"></nt-icon>
+    </div>
+  </section>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

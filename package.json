@@ -1,0 +1,18 @@
+{
+  "name": "web-components",
+  "version": "1.0.0",
+  "description": "Web component library.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "keywords": [
+    "WebComponent"
+  ],
+  "author": "向成渝",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^4.3.3"
+  }
+}

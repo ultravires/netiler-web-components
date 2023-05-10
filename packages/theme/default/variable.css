@@ -1,0 +1,36 @@
+:root {
+  /* 透明度 */
+  --opacity: 1;
+
+  /* 主题色 */
+  --color-white: #fff;
+  --color-black: #000;
+  --primary-color: #4a68d9;
+  --success-color: #46c036;
+  --warning-color: #ffa81c;
+  --danger-color: #e63925;
+
+  /* 边框色 */
+  --border-color: #d9d9d9;
+
+  /* 字体色 */
+  --text-color: #444;
+  --placeholder-text-color: #a8abb2;
+
+  /* 圆角 */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-circle: 50%;
+  --radius-round: 9999px;
+
+  /* 高度 */
+  --height-sm: 24px;
+  --height-base: 32px;
+  --height-lg: 40px;
+
+  /* 字体大小 */
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+}
