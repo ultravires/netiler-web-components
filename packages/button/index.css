@@ -36,8 +36,10 @@
   --nt-button-border-color: var(--border-color);
   --nt-button-border-radius: var(--radius-sm);
   --nt-button-text-color: var(--text-color);
-  --nt-button-disabled-text-color: var(--placeholder-text-color);
+
   --nt-button-disabled-background-color: var(--nt-button-primary-color-lighten-50);
+  --nt-button-disabled-border-color: var(--placeholder-text-color);
+  --nt-button-disabled-text-color: var(--placeholder-text-color);
 }
 
 /* 默认 */
@@ -248,6 +250,7 @@
 :host([disabled]) #button:hover,
 :host([disabled]) #button:active {
   --nt-button-background-color: var(--nt-button-disabled-background-color);
+  --nt-button-border-color: var(--nt-button-disabled-border-color);
   --nt-button-text-color: var(--nt-button-disabled-text-color);
   cursor: not-allowed;
 }
@@ -260,6 +263,7 @@
 :host([disabled]:not([type=primary])) #button:hover,
 :host([disabled]:not([type=primary])) #button:active {
   --nt-button-disabled-background-color: transparent;
+  --nt-button-disabled-border-color: var(--nt-button-primary-color-lighten-50);
   --nt-button-disabled-text-color: var(--nt-button-primary-color-lighten-50);
 }
 
@@ -267,5 +271,19 @@
 :host([disabled][type=primary]) #button:hover,
 :host([disabled][type=primary]) #button:active {
   --nt-button-disabled-background-color: var(--nt-button-primary-color-lighten-50);
+  --nt-button-disabled-border-color: var(--nt-button-primary-color-lighten-50);
   --nt-button-disabled-text-color: #fff;
+}
+
+:host([disabled][type=link]) #button,
+:host([disabled][type=link]) #button:hover,
+:host([disabled][type=link]) #button:active {
+  --nt-button-disabled-border-color: transparent;
+}
+
+:host([disabled][type=flat]) #button,
+:host([disabled][type=flat]) #button:hover,
+:host([disabled][type=flat]) #button:active {
+  --nt-button-disabled-background-color: var(--nt-button-primary-color-opacity-90);
+  --nt-button-disabled-border-color: transparent;
 }

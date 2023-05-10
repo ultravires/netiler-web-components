@@ -2,6 +2,8 @@ import BaseComponent from '../base';
 import style from './index.css?inline' assert { type: 'css' };
 
 export default class NtButton extends BaseComponent {
+  #button;
+  #loading;
 
   static componentName = 'nt-button';
 
@@ -21,10 +23,14 @@ export default class NtButton extends BaseComponent {
     } else {
       this.shadowRoot.innerHTML = `
       <button id="button" part="button" ${ this.disabled ? 'disabled' : '' }>
-        <nt-icon name="praise" ${ !this.loading ? 'hidden' : '' }></nt-icon>
+        <slot id="loading" name="loading" ${ !this.loading ? 'hidden' : '' }>
+          <nt-loading></nt-loading>
+        </slot>
         <slot></slot>
       </button>`;
     }
+    this.#button = this.shadowRoot.getElementById('button');
+    this.#loading = this.shadowRoot.getElementById('loading');
   }
 
   get disabled() {
@@ -32,7 +38,13 @@ export default class NtButton extends BaseComponent {
   }
 
   set disabled( value ) {
-    this.setAttribute( 'disabled', value );
+    if ( value ) {
+      this.setAttribute( 'disabled', '' );
+      this.#button.setAttribute( 'disabled', '' );
+    } else {
+      this.removeAttribute( 'disabled' );
+      this.#button.removeAttribute( 'disabled' );
+    }
   }
 
   get color() {
@@ -49,7 +61,11 @@ export default class NtButton extends BaseComponent {
 
   set loading( value ) {
     if ( value ) {
+      this.#loading.hidden = false;
       this.disabled = true;
+    } else {
+      this.#loading.hidden = true;
+      this.disabled = false;
     }
   }
 

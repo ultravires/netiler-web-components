@@ -1,0 +1,16 @@
+:host .loading {
+  width: 1em;
+  height: 1em;
+  animation: 1s linear 0s infinite normal none running rotate;
+  -webkit-mask: conic-gradient(from 36deg, transparent 5%, rgba(0, 0, 0, 0.5) 50%, royalblue 90%);
+  -webkit-mask-composite: source-in;
+  mask: conic-gradient(from 36deg, transparent 5%, rgba(0, 0, 0, 0.5) 50%, royalblue 90%);
+  mask-composite: source-in;
+  fill: currentColor;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

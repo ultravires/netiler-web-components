@@ -15,4 +15,16 @@ window.addEventListener('DOMContentLoaded', () => {
   button2.onclick = () => {
     alert('弹窗事件2');
   };
+
+  const loadButton = document.getElementById('loadButton');
+  loadButton.addEventListener('click', () => {
+    console.log('数据正在加载...');
+    loadButton.loading = true;
+    let timer = setTimeout(() => {
+      console.log('数据加载完成...');
+      loadButton.loading = false;
+      clearTimeout(timer);
+      timer = null;
+    }, 1000);
+  });
 });
