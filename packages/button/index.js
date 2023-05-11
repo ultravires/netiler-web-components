@@ -80,6 +80,11 @@ export default class NtButton extends BaseComponent {
   attributeChangedCallback( prop, oldValue, newValue ) {
     if ( prop === 'color' && !['primary', 'success', 'warning', 'danger', 'default'].includes(newValue) ) {
       this.style.setProperty('--nt-button-primary-color', newValue);
+      return;
+    }
+    if ( prop === 'loading' ) {
+      this.loading = ( newValue !== null );
+      return;
     }
   }
 }

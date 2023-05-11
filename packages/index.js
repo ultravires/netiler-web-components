@@ -1,11 +1,13 @@
 import NtButton from './button';
 import NtButtonGroup from './button-group';
+import NtHeader from './header';
 import NtIcon from './icon';
 import NtLoading from './loading';
 
 const components = [
   NtButton,
   NtButtonGroup,
+  NtHeader,
   NtIcon,
   NtLoading
 ];
@@ -13,6 +15,7 @@ const components = [
 const componentMap = {
   NtButton,
   NtButtonGroup,
+  NtHeader,
   NtIcon,
   NtLoading
 };

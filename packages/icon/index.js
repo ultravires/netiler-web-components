@@ -5,10 +5,10 @@ class NtIcon extends BaseComponent {
 
   static componentName = 'nt-icon';
 
-  static iconURL = 'http://localhost:5173/icons/index.js';
+  static iconURL = './icons.js';
 
   static get observedAttributes() {
-    return [ 'size' ];
+    return [ 'size', 'name' ];
   }
 
   async registerIcons() {
@@ -35,6 +35,10 @@ class NtIcon extends BaseComponent {
   attributeChangedCallback( prop, oldValue, newValue ) {
     if ( prop === 'size' ) {
       this.style.fontSize = `${ newValue }px`;
+      return;
+    }
+    if ( prop === 'name' ) {
+      this.render();
     }
   }
 
@@ -42,7 +46,9 @@ class NtIcon extends BaseComponent {
     super();
 
     this.adoptStyleSheet( style );
+  }
 
+  render() {
     this.registerIcons().then( ( module ) => {
       const icons = module.default;
       const icon = icons.find( ( icon ) => icon.name === this.name );

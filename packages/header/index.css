@@ -1,0 +1,10 @@
+:host {
+  --nt-header-height: 40px;
+  display: block;
+}
+
+#header {
+  flex-shrink: 0;
+  height: var(--nt-header-height);
+  width: 100%;
+}
