@@ -13,8 +13,8 @@ export default class NtButton extends BaseComponent {
 
   constructor() {
     super();
-    this.render();
     this.adoptStyleSheet( style );
+    this.render();
   }
 
   render() {
@@ -22,8 +22,8 @@ export default class NtButton extends BaseComponent {
       this.shadowRoot.innerHTML = `<a id="button" part="button"><slot></slot></a>`;
     } else {
       this.shadowRoot.innerHTML = `
-      <button id="button" part="button" ${ this.disabled ? 'disabled' : '' }>
-        <slot id="loading" name="loading" ${ !this.loading ? 'hidden' : '' }>
+      <button id="button" part="button">
+        <slot id="loading" name="loading" hidden>
           <nt-loading></nt-loading>
         </slot>
         <slot></slot>
@@ -61,11 +61,13 @@ export default class NtButton extends BaseComponent {
 
   set loading( value ) {
     if ( value ) {
-      this.#loading.hidden = false;
       this.disabled = true;
+      this.#loading.hidden = false;
+      this.setAttribute( 'loading', '' );
     } else {
       this.#loading.hidden = true;
       this.disabled = false;
+      this.removeAttribute( 'loading' );
     }
   }
 
@@ -78,12 +80,20 @@ export default class NtButton extends BaseComponent {
   }
 
   attributeChangedCallback( prop, oldValue, newValue ) {
+    if ( oldValue === newValue ) return;
+
     if ( prop === 'color' && !['primary', 'success', 'warning', 'danger', 'default'].includes(newValue) ) {
       this.style.setProperty('--nt-button-primary-color', newValue);
       return;
     }
+
     if ( prop === 'loading' ) {
       this.loading = ( newValue !== null );
+      return;
+    }
+
+    if ( prop === 'disabled' ) {
+      this.disabled = ( newValue !== null );
       return;
     }
   }

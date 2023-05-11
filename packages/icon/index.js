@@ -33,6 +33,9 @@ class NtIcon extends BaseComponent {
   }
 
   attributeChangedCallback( prop, oldValue, newValue ) {
+    if (oldValue === newValue) {
+      return;
+    }
     if ( prop === 'size' ) {
       this.style.fontSize = `${ newValue }px`;
       return;
