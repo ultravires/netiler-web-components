@@ -22,6 +22,7 @@
   "files": [
     "dist",
     "icons",
+    "packages",
     "package.json",
     "README.md",
     "LICENSE",
