@@ -5,7 +5,7 @@ class NtIcon extends BaseComponent {
 
   static componentName = 'nt-icon';
 
-  static iconURL = './icons.js';
+  static iconURL = 'http://localhost:5173/icons/index.js';
 
   static get observedAttributes() {
     return [ 'size', 'name' ];

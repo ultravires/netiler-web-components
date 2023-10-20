@@ -1,8 +1,8 @@
 {
-  "name": "web-components",
+  "name": "@netiler/web-components",
   "version": "1.0.0",
   "description": "Web component library.",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build"
@@ -14,5 +14,17 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^4.3.3"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://mvn.hczy.top:8888/repository/hczy-npm-hosted/"
+  },
+  "files": [
+    "dist",
+    "icons",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
 }

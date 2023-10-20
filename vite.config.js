@@ -12,7 +12,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'packages/index.js'),
       name: 'NetilerUI',
-      fileName: 'netiler'
+      fileName: 'index',
+      formats: ['es', 'umd']
     },
     rollupOptions: {}
   }
