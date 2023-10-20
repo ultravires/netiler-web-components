@@ -50,7 +50,6 @@
   align-items: center;
   gap: 4px;
   height: var(--nt-button-height);
-  width: -webkit-fill-available;
   line-height: 1;
   padding: 4px 15px;
   border: 1px solid var(--nt-button-border-color);
