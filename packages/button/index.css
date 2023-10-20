@@ -1,6 +1,6 @@
 :host {
+  display: inline-flex;
   --nt-button-primary-color: var(--primary-color);
-
   --nt-button-primary-color-opacity-90: color-mix(in srgb, var(--nt-button-primary-color), transparent 90%);
   --nt-button-primary-color-opacity-80: color-mix(in srgb, var(--nt-button-primary-color), transparent 80%);
   --nt-button-primary-color-opacity-70: color-mix(in srgb, var(--nt-button-primary-color), transparent 70%);
