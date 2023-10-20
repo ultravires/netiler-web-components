@@ -1,6 +1,6 @@
 {
   "name": "@netiler/web-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Web component library.",
   "main": "./lib/index.js",
   "scripts": {
