@@ -289,6 +289,13 @@
       <nt-icon name="wallet" size="40"></nt-icon>
       <nt-icon name="wallet" size="60"></nt-icon>
     </div>
+    <h2>表格组件</h2>
+    <div class="flex items-end gap-4 my-4 p-4 border border-dashed">
+      <nt-table
+        data='[{ "name": "张三", "phone": "1001" }, { "name": "王五", "phone": "1002" }, { "name": "赵六", "phone": "1003" }]'
+        columns='[{ "label": "电话", "prop": "phone" }, { "label": "姓名", "prop": "name" }]'
+      ></nt-table>
+    </div>
   </section>
   <script type="module" src="./main.js"></script>
 </body>

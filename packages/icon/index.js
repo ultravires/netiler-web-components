@@ -5,7 +5,7 @@ class NtIcon extends BaseComponent {
 
   static componentName = 'nt-icon';
 
-  static iconURL = 'http://localhost:5173/icons/index.js';
+  static iconURL = './icons.mjs';
 
   static get observedAttributes() {
     return [ 'size', 'name' ];
@@ -55,14 +55,20 @@ class NtIcon extends BaseComponent {
     this.registerIcons().then( ( module ) => {
       const icons = module.default;
       const icon = icons.find( ( icon ) => icon.name === this.name );
-      this.shadowRoot.innerHTML = `
-      <svg id="icon" part="icon">
-        <symbol viewBox="0 0 1024 1024" id="${ icon.name }">
-          ${ icon.path }
-        </symbol>
-        <use xlink:href="#${ this.name }"></use>
-      </svg>
-      `;
+      // this.shadowRoot.innerHTML = `
+      // <svg id="icon" part="icon">
+      //   <symbol viewBox="0 0 1024 1024" id="${ icon.name }">
+      //     ${ icon.path }
+      //   </symbol>
+      //   <use xlink:href="#${ this.name }"></use>
+      // </svg>
+      // `;
+      const wrapper = document.createElement( 'div' );
+      wrapper.innerHTML = icon.icon;
+      wrapper.id = 'icon';
+      wrapper.setAttribute( 'part', 'icon' );
+      this.shadowRoot.appendChild( wrapper );
+      // this.shadowRoot.innerHTML = icon.icon;
     } );
   }
 }

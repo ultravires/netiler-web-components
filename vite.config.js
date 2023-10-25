@@ -10,10 +10,9 @@ export default defineConfig({
   publicDir: 'public',
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'packages/index.js'),
+      entry: [path.resolve(__dirname, 'packages/index.js'), path.resolve(__dirname, 'icons/icons.js')],
       name: 'NetilerUI',
-      fileName: 'index',
-      formats: ['es', 'umd']
+      formats: ['es']
     },
     rollupOptions: {}
   }

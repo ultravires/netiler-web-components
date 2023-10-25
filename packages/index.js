@@ -3,13 +3,15 @@ import NtButtonGroup from './button-group';
 import NtHeader from './header';
 import NtIcon from './icon';
 import NtLoading from './loading';
+import NtTable from './table';
 
 const components = [
   NtButton,
   NtButtonGroup,
   NtHeader,
   NtIcon,
-  NtLoading
+  NtLoading,
+  NtTable
 ];
 
 const componentMap = {
@@ -17,7 +19,8 @@ const componentMap = {
   NtButtonGroup,
   NtHeader,
   NtIcon,
-  NtLoading
+  NtLoading,
+  NtTable
 };
 
 export default {
