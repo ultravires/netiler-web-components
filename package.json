@@ -2,7 +2,17 @@
   "name": "@netiler/web-components",
   "version": "1.0.5",
   "description": "Web component library.",
-  "main": "./lib/index.js",
+  "main": "./dist/index.mjs",
+  "type": "module",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs"
+    },
+    "./icons": {
+      "import": "./dist/icon.mjs"
+    }
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

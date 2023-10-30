@@ -13,7 +13,6 @@ export default defineConfig({
       entry: [path.resolve(__dirname, 'packages/index.js'), path.resolve(__dirname, 'icons/icons.js')],
       name: 'NetilerUI',
       formats: ['es']
-    },
-    rollupOptions: {}
+    }
   }
 });
