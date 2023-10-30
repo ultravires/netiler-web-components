@@ -27,7 +27,6 @@ export default class NtTable extends BaseComponent {
     for (let i = 0, len = columns.length; i < len; i++) {
       const column = columns[i];
       const label = column['label'];
-      const prop = column['prop'];
       const th = document.createElement('th');
       th.innerText = label;
       thead_tr.appendChild(th);
@@ -38,7 +37,7 @@ export default class NtTable extends BaseComponent {
       for (let j = 0, len = columns.length; j < len; j++) {
         const column = columns[j];
         const td = document.createElement('td');
-        td.innerText = item[column.prop];
+        td.innerText = item[column.prop] || '';
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
