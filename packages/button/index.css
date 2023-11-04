@@ -58,8 +58,10 @@
   background-color: var(--nt-button-background-color);
   color: var(--nt-button-text-color);
   font-size: var(--font-size-md);
+  white-space: nowrap;
   outline: none;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 :host #button:hover {
@@ -123,6 +125,24 @@
 }
 
 :host([type=dashed]) #button:active {
+  --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
+  --nt-button-border-color: var(--nt-button-primary-color);
+  --nt-button-text-color: var(--nt-button-primary-color-darken-20);
+}
+
+:host([type=solid]) #button {
+  --nt-button-background-color: transparent;
+  --nt-button-border-color: var(--border-color);
+  --nt-button-text-color: var(--text-color);
+  border-style: solid;
+}
+
+:host([type=solid]) #button:hover {
+  --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
+  --nt-button-text-color: var(--nt-button-primary-color);
+}
+
+:host([type=solid]) #button:active {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color);
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
@@ -196,6 +216,10 @@
 }
 
 :host([ghost]:where([type=dashed], [type=flat])) #button {
+  --nt-button-text-color: #fff;
+}
+
+:host([ghost]:where([type=solid], [type=flat])) #button {
   --nt-button-text-color: #fff;
 }
 

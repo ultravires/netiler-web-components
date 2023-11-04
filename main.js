@@ -1,5 +1,5 @@
-// import NetilerUI from './dist/index';
-import NetilerUI from '@packages';
+import NetilerUI from '@netiler/web-components';
+import '@netiler/web-components/theme';
 
 // NetilerUI.getComponent( 'NtIcon' ).iconURL = 'http://localhost:5173/icons/index.js';
 

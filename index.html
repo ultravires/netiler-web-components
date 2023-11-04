@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Netiler Web Components</title>
-  <link rel="stylesheet" href="./packages/theme/default/variable.css">
+  <!-- <link rel="stylesheet" href="./packages/theme/default/variable.css"> -->
   <style>
     html {
       background-color: #fff;
@@ -76,6 +76,7 @@
       <nt-button>默认</nt-button>
       <nt-button type="primary">主要</nt-button>
       <nt-button type="plain">朴素</nt-button>
+      <nt-button type="solid">实线</nt-button>
       <nt-button type="dashed">虚线</nt-button>
       <nt-button type="flat">扁平</nt-button>
       <nt-button type="link">链接</nt-button>
@@ -104,6 +105,14 @@
       <nt-button type="plain" color="danger">危险</nt-button>
       <nt-button type="plain" color="#636AE7">自定义</nt-button>
       <nt-button type="plain">默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="solid" color="primary">主要</nt-button>
+      <nt-button type="solid" color="success">成功</nt-button>
+      <nt-button type="solid" color="warning">警告</nt-button>
+      <nt-button type="solid" color="danger">危险</nt-button>
+      <nt-button type="solid" color="#636AE7">自定义</nt-button>
+      <nt-button type="solid">默认</nt-button>
     </div>
     <div class="flex gap-4 my-4 p-4 border border-dashed">
       <nt-button type="dashed" color="primary">主要</nt-button>
@@ -143,6 +152,13 @@
       <nt-button type="plain" color="warning" disabled>警告</nt-button>
       <nt-button type="plain" color="danger" disabled>危险</nt-button>
       <nt-button type="plain" disabled>默认</nt-button>
+    </div>
+    <div class="flex gap-4 my-4 p-4 border border-dashed">
+      <nt-button type="solid" color="primary" disabled>主要</nt-button>
+      <nt-button type="solid" color="success" disabled>成功</nt-button>
+      <nt-button type="solid" color="warning" disabled>警告</nt-button>
+      <nt-button type="solid" color="danger" disabled>危险</nt-button>
+      <nt-button type="solid" disabled>默认</nt-button>
     </div>
     <div class="flex gap-4 my-4 p-4 border border-dashed">
       <nt-button type="dashed" color="primary" disabled>主要</nt-button>
@@ -190,6 +206,14 @@
         <nt-button type="plain" color="danger" ghost>危险</nt-button>
         <nt-button type="plain" ghost>默认</nt-button>
         <nt-button type="plain" ghost disabled>禁用</nt-button>
+      </div>
+      <div class="flex gap-4 my-4 p-4 border border-dashed">
+        <nt-button type="solid" color="primary" ghost>主要</nt-button>
+        <nt-button type="solid" color="success" ghost>成功</nt-button>
+        <nt-button type="solid" color="warning" ghost>警告</nt-button>
+        <nt-button type="solid" color="danger" ghost>危险</nt-button>
+        <nt-button type="solid" ghost>默认</nt-button>
+        <nt-button type="solid" ghost disabled>禁用</nt-button>
       </div>
       <div class="flex gap-4 my-4 p-4 border border-dashed">
         <nt-button type="dashed" color="primary" ghost>主要</nt-button>
@@ -295,6 +319,13 @@
         data='[{ "name": "张三", "phone": "1001" }, { "name": "王五", "phone": "1002" }, { "name": "赵六", "phone": "1003" }]'
         columns='[{ "label": "电话", "prop": "phone" }, { "label": "姓名", "prop": "name" }]'
       ></nt-table>
+    </div>
+    <h2>走马灯</h2>
+    <div class="flex items-end gap-4 my-4 p-4 border border-dashed">
+      <nt-marquee>
+        <nt-marquee-item>跑马灯</nt-marquee-item>
+        <nt-marquee-item>走马灯</nt-marquee-item>
+      </nt-marquee>
     </div>
   </section>
   <script type="module" src="./main.js"></script>

@@ -3,6 +3,7 @@ import NtButtonGroup from './button-group';
 import NtHeader from './header';
 import NtIcon from './icon';
 import NtLoading from './loading';
+import NtMarquee from './marquee';
 import NtTable from './table';
 
 const components = [
@@ -11,6 +12,7 @@ const components = [
   NtHeader,
   NtIcon,
   NtLoading,
+  NtMarquee,
   NtTable
 ];
 
@@ -20,6 +22,7 @@ const componentMap = {
   NtHeader,
   NtIcon,
   NtLoading,
+  NtMarquee,
   NtTable
 };
 

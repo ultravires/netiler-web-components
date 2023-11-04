@@ -1,10 +1,17 @@
-#icon {
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host #icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host #icon > svg {
   width: 1em;
   height: 1em;
   fill: currentColor;
-}
-
-#icon > svg {
-  width: 1em;
-  height: 1em;
 }

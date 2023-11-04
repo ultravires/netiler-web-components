@@ -2,15 +2,18 @@
   "name": "@netiler/web-components",
   "version": "0.0.1",
   "description": "Web component library.",
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.js",
   "type": "module",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js"
     },
     "./icons": {
-      "import": "./dist/icon.mjs"
+      "import": "./dist/icons.js"
+    },
+    "./theme": {
+      "import": "./packages/theme/default/index.css"
     }
   },
   "scripts": {

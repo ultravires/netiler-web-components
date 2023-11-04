@@ -1,19 +1,22 @@
 import BaseComponent from '../base';
 import style from './index.css?inline' assert { type: 'css' };
+import * as icons from './icons.js';
 
 class NtIcon extends BaseComponent {
 
   static componentName = 'nt-icon';
 
-  static iconURL = './icons.mjs';
+  static iconURL = './icons';
 
   static get observedAttributes() {
     return [ 'size', 'name' ];
   }
 
-  async registerIcons() {
-    const icons = await import( /* @vite-ignore */ this.constructor.iconURL );
-    return icons;
+  async registerIcons(icons) {
+    if (icons) {
+      return icons;
+    }
+    return await import( /* @vite-ignore */ this.constructor.iconURL );
   }
 
   get name() {
@@ -52,7 +55,7 @@ class NtIcon extends BaseComponent {
   }
 
   render() {
-    this.registerIcons().then((module) => {
+    this.registerIcons(icons).then((module) => {
       const icons = module.default;
       const icon = icons.find((icon) => icon.name === this.name);
       const wrapper = document.createElement( 'div' );

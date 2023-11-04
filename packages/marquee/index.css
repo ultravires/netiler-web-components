@@ -1,0 +1,23 @@
+:host .nt-marquee {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+:host .nt-marquee__content {
+  animation: marquee 5s linear 0s infinite;
+}
+
+:host .nt-marquee:hover .nt-marquee__content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
