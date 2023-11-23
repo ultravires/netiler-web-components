@@ -7,6 +7,13 @@ export default class NtMarquee extends BaseComponent {
   constructor() {
     super();
     this.adoptStyleSheet(style);
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
     this.shadowRoot.innerHTML = `
     <div class="nt-marquee">
       <div class="nt-marquee__content">

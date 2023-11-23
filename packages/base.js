@@ -29,6 +29,7 @@ export default class BaseComponent extends HTMLElement {
 
   constructor() {
     super();
+    this.internals = this.attachInternals();
     this.attachShadow( { mode: 'open' } );
   }
 }

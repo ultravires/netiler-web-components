@@ -43,7 +43,7 @@
 }
 
 /* 默认 */
-:host #button {
+:host .button {
   position: relative;
   display: flex;
   justify-content: center;
@@ -64,120 +64,121 @@
   cursor: pointer;
 }
 
-:host #button:hover {
+:host .button:hover {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-text-color: var(--nt-button-primary-color);
   z-index: 1;
 }
 
-:host #button:active {
+:host .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color-darken-20);
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
 }
 
 /* 风格 */
-:host([type=primary]) #button {
+:host([type=primary]) .button {
   --nt-button-background-color: var(--nt-button-primary-color);
   --nt-button-border-color: var(--nt-button-primary-color);
   --nt-button-text-color: #fff;
 }
 
-:host([type=primary]) #button:hover {
+:host([type=primary]) .button:hover {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-text-color: #fff;
 }
 
-:host([type=primary]) #button:active {
+:host([type=primary]) .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-darken-20);
   --nt-button-border-color: var(--nt-button-primary-color-darken-20);
   --nt-button-text-color: #fff;
 }
 
-:host([type=plain]) #button {
+:host([type=plain]) .button {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-text-color: var(--nt-button-primary-color);
 }
 
-:host([type=plain]) #button:hover {
+:host([type=plain]) .button:hover {
   --nt-button-background-color: var(--nt-button-primary-color);
   --nt-button-text-color: #fff;
 }
 
-:host([type=plain]) #button:active {
+:host([type=plain]) .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-darken-20);
   --nt-button-text-color: #fff;
 }
 
-:host([type=dashed]) #button {
+:host([type=dashed]) .button {
   --nt-button-background-color: transparent;
   --nt-button-border-color: var(--border-color);
   --nt-button-text-color: var(--text-color);
   border-style: dashed;
 }
 
-:host([type=dashed]) #button:hover {
+:host([type=dashed]) .button:hover {
   --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-text-color: var(--nt-button-primary-color);
 }
 
-:host([type=dashed]) #button:active {
+:host([type=dashed]) .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color);
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
 }
 
-:host([type=solid]) #button {
+:host([type=solid]) .button {
   --nt-button-background-color: transparent;
   --nt-button-border-color: var(--border-color);
   --nt-button-text-color: var(--text-color);
   border-style: solid;
 }
 
-:host([type=solid]) #button:hover {
+:host([type=solid]) .button:hover {
   --nt-button-border-color: var(--nt-button-primary-color-lighten-20);
   --nt-button-text-color: var(--nt-button-primary-color);
 }
 
-:host([type=solid]) #button:active {
+:host([type=solid]) .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color);
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
 }
 
-:host([type=flat]) #button {
+:host([type=flat]) .button {
   --nt-button-background-color: transparent;
   --nt-button-border-color: transparent;
   --nt-button-text-color: var(--text-color);
 }
 
-:host([type=flat]) #button:hover {
+:host([type=flat]) .button:hover {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-90);
   --nt-button-border-color: var(--nt-button-primary-color-lighten-90);
   --nt-button-text-color: var(--nt-button-primary-color-lighten-10);
 }
 
-:host([type=flat]) #button:active {
+:host([type=flat]) .button:active {
   --nt-button-background-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-border-color: var(--nt-button-primary-color-lighten-80);
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
 }
 
-:host([type=link]) #button {
+:host([type=link]) .button {
   --nt-button-background-color: transparent;
   --nt-button-border-color: transparent;
   --nt-button-text-color: var(--nt-button-primary-color);
+  padding: 0;
   cursor: pointer;
 }
 
-:host([type=link]) #button:hover {
+:host([type=link]) .button:hover {
   --nt-button-text-color: var(--nt-button-primary-color-lighten-20);
 }
 
-:host([type=link]) #button:active {
+:host([type=link]) .button:active {
   --nt-button-text-color: var(--nt-button-primary-color-darken-20);
 }
 
@@ -203,49 +204,49 @@
 }
 
 /* 幽灵 */
-:host([ghost]) #button {
+:host([ghost]) .button {
   --nt-button-primary-color: var(--nt-button-primary-color-opacity-20);
 }
 
-:host([ghost]) #button:hover {
+:host([ghost]) .button:hover {
   --nt-button-primary-color: var(--nt-button-primary-color-opacity-20);
 }
 
-:host([ghost]) #button:active {
+:host([ghost]) .button:active {
   --nt-button-primary-color: var(--nt-button-primary-color-opacity-50);
 }
 
-:host([ghost]:where([type=dashed], [type=flat])) #button {
+:host([ghost]:where([type=dashed], [type=flat])) .button {
   --nt-button-text-color: #fff;
 }
 
-:host([ghost]:where([type=solid], [type=flat])) #button {
+:host([ghost]:where([type=solid], [type=flat])) .button {
   --nt-button-text-color: #fff;
 }
 
 /* 形状 */
-:host(:empty) #button {
+:host(:empty) .button {
   padding: 0;
   width: var(--nt-button-height);
 }
 
-:host([round=sm]) #button {
+:host([round=sm]) .button {
   --nt-button-border-radius: var(--radius-sm);
 }
 
-:host([round=md]) #button {
+:host([round=md]) .button {
   --nt-button-border-radius: var(--radius-md);
 }
 
-:host([round=lg]) #button {
+:host([round=lg]) .button {
   --nt-button-border-radius: var(--radius-lg);
 }
 
-:host([round=round]) #button {
+:host([round=round]) .button {
   --nt-button-border-radius: var(--radius-round);
 }
 
-:host([round=circle]) #button {
+:host([round=circle]) .button {
   --nt-button-border-radius: var(--radius-circle);
   padding: 0;
   width: var(--nt-button-height);
@@ -257,57 +258,57 @@
 }
 
 /* 尺寸 */
-:host([size=small]) #button {
+:host([size=small]) .button {
   --nt-button-height: var(--height-sm);
   font-size: var(--font-size-sm);
   padding: 0 7px;
 }
 
-:host([size=large]) #button {
+:host([size=large]) .button {
   --nt-button-height: var(--height-lg);
   font-size: var(--font-size-lg);
   padding: 6px 15px;
 }
 
 /* 禁用 */
-:host([disabled]) #button,
-:host([disabled]) #button:hover,
-:host([disabled]) #button:active {
+:host([disabled]) .button,
+:host([disabled]) .button:hover,
+:host([disabled]) .button:active {
   --nt-button-background-color: var(--nt-button-disabled-background-color);
   --nt-button-border-color: var(--nt-button-disabled-border-color);
   --nt-button-text-color: var(--nt-button-disabled-text-color);
   cursor: not-allowed;
 }
 
-:host([disabled]) #button > * {
+:host([disabled]) .button > * {
   pointer-events: none;
 }
 
-:host([disabled]:not([type=primary])) #button,
-:host([disabled]:not([type=primary])) #button:hover,
-:host([disabled]:not([type=primary])) #button:active {
+:host([disabled]:not([type=primary])) .button,
+:host([disabled]:not([type=primary])) .button:hover,
+:host([disabled]:not([type=primary])) .button:active {
   --nt-button-disabled-background-color: transparent;
   --nt-button-disabled-border-color: var(--nt-button-primary-color-lighten-50);
   --nt-button-disabled-text-color: var(--nt-button-primary-color-lighten-50);
 }
 
-:host([disabled][type=primary]) #button,
-:host([disabled][type=primary]) #button:hover,
-:host([disabled][type=primary]) #button:active {
+:host([disabled][type=primary]) .button,
+:host([disabled][type=primary]) .button:hover,
+:host([disabled][type=primary]) .button:active {
   --nt-button-disabled-background-color: var(--nt-button-primary-color-lighten-50);
   --nt-button-disabled-border-color: var(--nt-button-primary-color-lighten-50);
   --nt-button-disabled-text-color: #fff;
 }
 
-:host([disabled][type=link]) #button,
-:host([disabled][type=link]) #button:hover,
-:host([disabled][type=link]) #button:active {
+:host([disabled][type=link]) .button,
+:host([disabled][type=link]) .button:hover,
+:host([disabled][type=link]) .button:active {
   --nt-button-disabled-border-color: transparent;
 }
 
-:host([disabled][type=flat]) #button,
-:host([disabled][type=flat]) #button:hover,
-:host([disabled][type=flat]) #button:active {
+:host([disabled][type=flat]) .button,
+:host([disabled][type=flat]) .button:hover,
+:host([disabled][type=flat]) .button:active {
   --nt-button-disabled-background-color: var(--nt-button-primary-color-opacity-90);
   --nt-button-disabled-border-color: transparent;
 }

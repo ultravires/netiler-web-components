@@ -10,9 +10,14 @@ export default class NtHeader extends BaseComponent {
 
   constructor() {
     super();
-
     this.adoptStyleSheet( style );
+  }
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
     this.shadowRoot.innerHTML = `<header id="header" part="header"><slot></slot></header>`;
   }
 

@@ -11,6 +11,9 @@ export default class NtTable extends BaseComponent {
   constructor() {
     super();
     this.adoptStyleSheet( style );
+  }
+
+  connectedCallback() {
     const data = JSON.parse(this.getAttribute('data'));
     const columns = JSON.parse(this.getAttribute('columns'));
     this.render(data, columns);

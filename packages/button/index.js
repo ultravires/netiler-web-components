@@ -1,4 +1,4 @@
-import BaseComponent from '../base';
+import BaseComponent from '@packages/base';
 import style from './index.css?inline' assert { type: 'css' };
 
 export default class NtButton extends BaseComponent {
@@ -8,29 +8,33 @@ export default class NtButton extends BaseComponent {
   static componentName = 'nt-button';
 
   static get observedAttributes() {
-    return [ 'disabled', 'color', 'loading', 'type' ];
+    return [ 'disabled', 'color', 'loading', 'type', 'nativeType' ];
   }
 
   constructor() {
     super();
     this.adoptStyleSheet( style );
+  }
+
+  connectedCallback() {
     this.render();
   }
 
   render() {
     if (this.type === 'link') {
-      this.shadowRoot.innerHTML = `<a id="button" part="button"><slot></slot></a>`;
+      this.shadowRoot.innerHTML = `<a class="button" part="button"><slot></slot></a>`;
     } else {
+      const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
-      <button id="button" part="button">
-        <slot id="loading" name="loading" hidden>
+      <button class="button" part="button" type=${nativeType}>
+        <slot class="loading" name="loading" hidden>
           <nt-loading></nt-loading>
         </slot>
         <slot></slot>
       </button>`;
     }
-    this.#button = this.shadowRoot.getElementById('button');
-    this.#loading = this.shadowRoot.getElementById('loading');
+    this.#button = this.shadowRoot.querySelector('.button');
+    this.#loading = this.shadowRoot.querySelector('.loading');
   }
 
   get disabled() {
@@ -39,11 +43,11 @@ export default class NtButton extends BaseComponent {
 
   set disabled( value ) {
     if ( value ) {
-      this.setAttribute( 'disabled', '' );
-      this.#button.setAttribute( 'disabled', '' );
+      this.#button?.setAttribute( 'disabled', '' );
+      this.#button?.setAttribute( 'disabled', '' );
     } else {
-      this.removeAttribute( 'disabled' );
-      this.#button.removeAttribute( 'disabled' );
+      this.#button?.removeAttribute( 'disabled' );
+      this.#button?.removeAttribute( 'disabled' );
     }
   }
 
@@ -62,10 +66,10 @@ export default class NtButton extends BaseComponent {
   set loading( value ) {
     if ( value ) {
       this.disabled = true;
-      this.#loading.hidden = false;
+      this.#loading && (this.#loading.hidden = false);
       this.setAttribute( 'loading', '' );
     } else {
-      this.#loading.hidden = true;
+      this.#loading && (this.#loading.hidden = true);
       this.disabled = false;
       this.removeAttribute( 'loading' );
     }
@@ -77,6 +81,14 @@ export default class NtButton extends BaseComponent {
 
   set type(value) {
     this.setAttribute( 'type', value );
+  }
+
+  get nativeType() {
+    return this.getAttribute('native-type') || 'default';
+  }
+
+  set nativeType(value) {
+    this.setAttribute('native-Type', value);
   }
 
   attributeChangedCallback( prop, oldValue, newValue ) {

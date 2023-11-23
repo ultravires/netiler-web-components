@@ -50,7 +50,6 @@ class NtIcon extends BaseComponent {
 
   constructor() {
     super();
-
     this.adoptStyleSheet(style);
   }
 
@@ -62,9 +61,11 @@ class NtIcon extends BaseComponent {
       wrapper.innerHTML = icon.icon;
       wrapper.id = 'icon';
       wrapper.setAttribute( 'part', 'icon' );
-      this.shadowRoot.appendChild( wrapper );
+      this.shadowRoot.innerHTML = wrapper.outerHTML;
     });
   }
+
+  connectedCallback() {}
 }
 
 export default NtIcon;

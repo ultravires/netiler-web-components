@@ -6,9 +6,14 @@ export default class ButtonGroup extends BaseComponent {
 
   constructor() {
     super();
-
-    this.shadowRoot.innerHTML = `<slot></slot>`;
-
     this.adoptStyleSheet( style );
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = `<slot></slot>`;
   }
 }
