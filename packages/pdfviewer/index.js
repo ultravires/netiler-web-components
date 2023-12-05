@@ -58,9 +58,9 @@ export default class NtButton extends BaseComponent {
           }
         });
       }, {
-        root: window.document.documentElement,
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.0
       });
       for(let num = 1; num <= pdf.numPages; num++) {
         const page = createEmptyPage(num);
@@ -95,8 +95,11 @@ export default class NtButton extends BaseComponent {
         const textLayer = page.querySelector(`#textLayer${num}`);
 
         // load page
-        const viewport = _page.getViewport({ scale: PDF_SCALE });
+        const unscaledViewport = _page.getViewport({ scale: 1.0 });
+        const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
+        console.log(DEFAULT_SCALE);
         const outputScale = window.devicePixelRatio || 1;
+        const viewport = _page.getViewport({ scale: DEFAULT_SCALE * outputScale });
         const canvasContext = canvas.getContext('2d');
         canvas.height = Math.floor(viewport.height * outputScale);
         canvas.width = Math.floor(viewport.width * outputScale);

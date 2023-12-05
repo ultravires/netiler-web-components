@@ -23,6 +23,7 @@ export default class NtButton extends BaseComponent {
   render() {
     if (this.type === 'link') {
       this.shadowRoot.innerHTML = `<a class="button" part="button"><slot></slot></a>`;
+      this.#button = this.shadowRoot.querySelector('.button');
     } else {
       const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
@@ -32,9 +33,9 @@ export default class NtButton extends BaseComponent {
         </slot>
         <slot></slot>
       </button>`;
+      this.#button = this.shadowRoot.querySelector('.button');
+      this.#loading = this.shadowRoot.querySelector('.loading');
     }
-    this.#button = this.shadowRoot.querySelector('.button');
-    this.#loading = this.shadowRoot.querySelector('.loading');
   }
 
   get disabled() {
@@ -52,19 +53,19 @@ export default class NtButton extends BaseComponent {
   }
 
   get color() {
-    return this.getAttribute( 'color' );
+    return this.getAttribute('color');
   }
 
-  set color( value ) {
-    this.setAttribute( 'color', value );
+  set color(value) {
+    this.setAttribute('color', value);
   }
 
   get loading() {
-    return this.hasAttribute( 'loading' );
+    return this.hasAttribute('loading');
   }
 
-  set loading( value ) {
-    if ( value ) {
+  set loading(value) {
+    if (value) {
       this.disabled = true;
       this.#loading && (this.#loading.hidden = false);
       this.setAttribute( 'loading', '' );
