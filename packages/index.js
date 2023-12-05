@@ -4,6 +4,7 @@ import NtHeader from './header';
 import NtIcon from './icon';
 import NtLoading from './loading';
 import NtMarquee from './marquee';
+import NtPdfViewer from './pdfviewer';
 import NtTable from './table';
 
 const components = [
@@ -13,6 +14,7 @@ const components = [
   NtIcon,
   NtLoading,
   NtMarquee,
+  NtPdfViewer,
   NtTable
 ];
 
@@ -23,6 +25,7 @@ const componentMap = {
   NtIcon,
   NtLoading,
   NtMarquee,
+  NtPdfViewer,
   NtTable
 };
 

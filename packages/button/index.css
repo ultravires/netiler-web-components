@@ -1,5 +1,7 @@
 :host {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   --nt-button-primary-color: var(--primary-color);
   --nt-button-primary-color-opacity-90: color-mix(in srgb, var(--nt-button-primary-color), transparent 90%);
   --nt-button-primary-color-opacity-80: color-mix(in srgb, var(--nt-button-primary-color), transparent 80%);
@@ -45,10 +47,6 @@
 /* 默认 */
 :host .button {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
   width: 100%;
   height: var(--nt-button-height);
   line-height: 1;
@@ -170,7 +168,6 @@
   --nt-button-background-color: transparent;
   --nt-button-border-color: transparent;
   --nt-button-text-color: var(--nt-button-primary-color);
-  padding: 0;
   cursor: pointer;
 }
 
@@ -248,7 +245,7 @@
 
 :host([round=circle]) .button {
   --nt-button-border-radius: var(--radius-circle);
-  padding: 0;
+  padding: 12px;
   width: var(--nt-button-height);
 }
 
@@ -267,7 +264,7 @@
 :host([size=large]) .button {
   --nt-button-height: var(--height-lg);
   font-size: var(--font-size-lg);
-  padding: 6px 15px;
+  padding: 0 12px;
 }
 
 /* 禁用 */

@@ -9,10 +9,14 @@ export default defineConfig({
   },
   publicDir: 'public',
   build: {
+    target: 'esnext',
     lib: {
       entry: [path.resolve(__dirname, 'packages/index.js'), path.resolve(__dirname, 'icons/icons.js')],
       name: 'NetilerUI',
       formats: ['es']
+    },
+    rollupOptions: {
+      external: ['pdfjs-dist/legacy']
     }
   }
 });

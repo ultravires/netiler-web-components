@@ -41,5 +41,8 @@
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
-  ]
+  ],
+  "dependencies": {
+    "pdfjs-dist": "^4.0.269"
+  }
 }
