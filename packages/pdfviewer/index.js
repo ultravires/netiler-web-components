@@ -1,7 +1,8 @@
 import { getDocument, GlobalWorkerOptions, renderTextLayer } from 'pdfjs-dist';
 import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs';
 import BaseComponent from '@packages/base';
-import style from './pdf_viewer.css' assert { type: 'css' };
+import pdfStyle from './pdf_viewer.css' assert { type: 'css' };
+import style from './index.css' assert { type: 'css' };
 
 export default class NtButton extends BaseComponent {
   static componentName = 'nt-pdf-viewer';
@@ -12,7 +13,8 @@ export default class NtButton extends BaseComponent {
 
   constructor() {
     super();
-    this.adoptStyleSheet( style );
+    this.adoptStyleSheet(style);
+    this.adoptStyleSheet(pdfStyle)
   }
 
   get file() {
