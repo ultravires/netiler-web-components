@@ -34,10 +34,10 @@ export default class NtButton extends BaseComponent {
   connectedCallback() {
     this.render();
 
+    const shadowRoot = this.shadowRoot;
     const viewer = this.shadowRoot.getElementById('viewer');
     let pdf = null;
     const PDF_FILE = this.file;
-    const PDF_SCALE = this.scale;
 
     GlobalWorkerOptions.workerSrc = pdfWorker;
     const loadingTask = getDocument({
@@ -97,7 +97,6 @@ export default class NtButton extends BaseComponent {
         // load page
         const unscaledViewport = _page.getViewport({ scale: 1.0 });
         const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
-        console.log(DEFAULT_SCALE);
         const outputScale = window.devicePixelRatio || 1;
         const viewport = _page.getViewport({ scale: DEFAULT_SCALE * outputScale });
         const canvasContext = canvas.getContext('2d');

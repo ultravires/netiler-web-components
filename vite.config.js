@@ -1,7 +1,11 @@
-import { defineConfig } from 'vite';
 import path from 'path';
+import { defineConfig } from 'vite';
+import UnoCSS from 'unocss/vite';
 
 export default defineConfig({
+  plugins: [
+    UnoCSS()
+  ],
   resolve: {
     alias: {
       '@packages': path.resolve(__dirname, 'packages')

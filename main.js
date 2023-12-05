@@ -2,6 +2,7 @@ import NetilerUI from '@netiler/web-components';
 import '@netiler/web-components/theme';
 
 // NetilerUI.getComponent( 'NtIcon' ).iconURL = 'http://localhost:5173/icons/index.js';
+import 'virtual:uno.css';
 
 NetilerUI.define();
 

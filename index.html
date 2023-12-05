@@ -16,63 +16,13 @@
     body {
       margin: 0;
     }
-    .container {
-      width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .items-end {
-      align-items: end;
-    }
-
-    .items-center {
-      align-items: center;
-    }
-
-    .gap-4 {
-      gap: 1rem;
-    }
-
-    .my-0 {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    .my-4 {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .p-4 {
-      padding: 1rem;
-    }
-
-    .px-4 {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .border {
-      border-width: 1px;
-      border-color: #d9d9d9;
-    }
-
-    .border-dashed {
-      border-style: dashed;
-    }
-
   </style>
 </head>
 <body>
   <nt-header class="px-4">
     <h1 class="my-0">Netiler</h1>
   </nt-header>
-  <section class="container">
+  <section class="container mx-auto">
     <h2>按钮组件</h2>
     <h3>风格</h3>
     <div class="flex gap-4 my-4 p-4 border border-dashed">
@@ -330,11 +280,14 @@
         <nt-marquee-item>走马灯</nt-marquee-item>
       </nt-marquee>
     </div>
+    <div class="flex items-end gap-4 my-4 p-4 border border-dashed">
+      <div class="w-full h-1100px overflow-auto">
+        <nt-pdf-viewer
+          file="http://localhost:5173/pdfjs-dist%2Fweb%2Fbooks%2F%E9%80%9A%E8%BF%87%E4%BE%8B%E5%AD%90%E5%AD%A6%20Rust%20%E4%B8%AD%E6%96%87%E7%89%88.pdf"
+        ></nt-pdf-viewer>
+      </div>
+    </div>
   </section>
-  <nt-pdf-viewer
-    file="http://localhost:5173/pdfjs-dist%2Fweb%2Fbooks%2F%E9%80%9A%E8%BF%87%E4%BE%8B%E5%AD%90%E5%AD%A6%20Rust%20%E4%B8%AD%E6%96%87%E7%89%88.pdf"
-    scale="1.0"
-  ></nt-pdf-viewer>
   <script type="module" src="./main.js"></script>
 </body>
 </html>
