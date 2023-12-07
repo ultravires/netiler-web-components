@@ -247,7 +247,7 @@
 
 :host([round=circle]) .button {
   --nt-button-border-radius: var(--radius-circle);
-  padding: 12px;
+  padding: 0;
   width: var(--nt-button-height);
 }
 
