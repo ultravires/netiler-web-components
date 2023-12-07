@@ -28,7 +28,7 @@ export default class NtButton extends BaseComponent {
       const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
       <button class="button" part="button" type=${nativeType}>
-        <slot class="loading" name="loading" hidden>
+        <slot class="loading" name="loading" ${ this.loading ? '' : 'hidden' }>
           <nt-loading></nt-loading>
         </slot>
         <slot></slot>
