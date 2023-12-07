@@ -23,7 +23,9 @@ export default class NtButton extends BaseComponent {
   render() {
     if (this.type === 'link') {
       this.shadowRoot.innerHTML = `<a class="button" part="button"><slot></slot></a>`;
-      this.#button = this.shadowRoot.querySelector('.button');
+      setTimeout(() => {
+        this.#button = this.shadowRoot.querySelector('.button');
+      }, 0);
     } else {
       const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
@@ -33,8 +35,10 @@ export default class NtButton extends BaseComponent {
         </slot>
         <slot></slot>
       </button>`;
-      this.#button = this.shadowRoot.querySelector('.button');
-      this.#loading = this.shadowRoot.querySelector('.loading');
+      setTimeout(() => {
+        this.#button = this.shadowRoot.querySelector('.button');
+        this.#loading = this.shadowRoot.querySelector('.loading');
+      }, 0);
     }
   }
 
