@@ -6,7 +6,8 @@ import 'virtual:uno.css';
 
 NetilerUI.define();
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+
   const button1 = document.getElementById('button1');
   button1.onclick = () => {
     alert('弹窗事件1');

@@ -1,4 +1,4 @@
-import { getDocument, GlobalWorkerOptions, renderTextLayer } from 'pdfjs-dist';
+import { getDocument, GlobalWorkerOptions, renderTextLayer, updateTextLayer } from 'pdfjs-dist';
 import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs';
 import BaseComponent from '@packages/base';
 import pdfStyle from './pdf_viewer.css' assert { type: 'css' };
@@ -38,6 +38,9 @@ export default class NtButton extends BaseComponent {
 
     const shadowRoot = this.shadowRoot;
     const viewer = this.shadowRoot.getElementById('viewer');
+    /**
+     * @type { import('pdfjs-dist').PDFDocumentProxy }
+     */
     let pdf = null;
     const PDF_FILE = this.file;
 
@@ -45,7 +48,8 @@ export default class NtButton extends BaseComponent {
     const loadingTask = getDocument({
       url: PDF_FILE,
       cMapUrl: './cmaps',
-      cMapPacked: true,
+      cMapPacked: false,
+      standardFontDataUrl: './stardard_fonts/',
       enableXfa: true
     });
     loadingTask.promise.then((_pdf) => {
@@ -119,12 +123,17 @@ export default class NtButton extends BaseComponent {
           textLayer.style.height = canvas.offsetHeight + 'px';
           textLayer.style.width = canvas.offsetWidth + 'px';
 
-          renderTextLayer({
-            textContent,
+          const textLayerRenderTask = renderTextLayer({
             textContentSource: textContent,
             container: textLayer,
             viewport: viewport,
             textDivs: []
+          });
+
+          textLayerRenderTask.promise.then((value) => {
+            console.log('Text Layer rendered!', value);
+          }, (reason) => {
+            console.error(reason);
           });
 
           page.setAttribute('data-loaded', true);

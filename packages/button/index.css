@@ -168,6 +168,8 @@
   --nt-button-background-color: transparent;
   --nt-button-border-color: transparent;
   --nt-button-text-color: var(--nt-button-primary-color);
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
 }
 
