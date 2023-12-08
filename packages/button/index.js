@@ -29,7 +29,7 @@ export default class NtButton extends BaseComponent {
     } else {
       const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
-      <button class="button" part="button" type=${nativeType}>
+      <button class="button" part="button" type=${nativeType} ${this.disabled ? 'disabled' : ''}>
         <slot class="loading" name="loading" ${ this.loading ? '' : 'hidden' }>
           <nt-loading></nt-loading>
         </slot>
@@ -48,9 +48,11 @@ export default class NtButton extends BaseComponent {
 
   set disabled( value ) {
     if ( value ) {
+      this.setAttribute('disabled', '');
       this.#button?.setAttribute( 'disabled', '' );
       this.#button?.setAttribute( 'disabled', '' );
     } else {
+      this.removeAttribute('disabled');
       this.#button?.removeAttribute( 'disabled' );
       this.#button?.removeAttribute( 'disabled' );
     }
