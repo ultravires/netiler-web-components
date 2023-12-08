@@ -1,3 +1,8 @@
+:host {
+  --animation-duration: 10s;
+  --animation-iteration-count: infinite;
+}
+
 :host .nt-marquee {
   display: flex;
   align-items: center;
@@ -5,7 +10,7 @@
 }
 
 :host .nt-marquee__content {
-  animation: marquee 5s linear 0s infinite;
+  animation: marquee var(--animation-duration, 10s) linear 0s var(--animation-iteration-count, infinite);
 }
 
 :host .nt-marquee:hover .nt-marquee__content {
