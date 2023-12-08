@@ -1,5 +1,4 @@
-import { getDocument, GlobalWorkerOptions, renderTextLayer, updateTextLayer } from 'pdfjs-dist';
-import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs';
+import { getDocument, GlobalWorkerOptions, renderTextLayer, version } from 'pdfjs-dist';
 import BaseComponent from '@packages/base';
 import pdfStyle from './pdf_viewer.css' assert { type: 'css' };
 import style from './index.css' assert { type: 'css' };
@@ -34,9 +33,9 @@ export default class NtButton extends BaseComponent {
   }
 
   connectedCallback() {
+    console.log(`pdfjs-dist: ${version}`);
     this.render();
 
-    const shadowRoot = this.shadowRoot;
     const viewer = this.shadowRoot.getElementById('viewer');
     /**
      * @type { import('pdfjs-dist').PDFDocumentProxy }
@@ -44,7 +43,7 @@ export default class NtButton extends BaseComponent {
     let pdf = null;
     const PDF_FILE = this.file;
 
-    GlobalWorkerOptions.workerSrc = pdfWorker;
+    GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url);
     const loadingTask = getDocument({
       url: PDF_FILE,
       cMapUrl: './cmaps',
@@ -58,7 +57,6 @@ export default class NtButton extends BaseComponent {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const num = Number.parseInt(entry.target.dataset.pageNumber);
-            console.log(`Ready render page ${num}`);
             renderPage(num);
             observer.unobserve(entry.target);
           }
@@ -103,6 +101,7 @@ export default class NtButton extends BaseComponent {
         // load page
         const unscaledViewport = _page.getViewport({ scale: 1.0 });
         const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
+        viewer.style.setProperty('--scale-factor', DEFAULT_SCALE);
         const outputScale = window.devicePixelRatio || 1;
         const viewport = _page.getViewport({ scale: DEFAULT_SCALE * outputScale });
         const canvasContext = canvas.getContext('2d');
@@ -116,22 +115,25 @@ export default class NtButton extends BaseComponent {
         };
         const renderTask = _page.render(renderContext);
         renderTask.promise.then(() => {
-          return _page.getTextContent();
-        }).then((textContent) => {
+          return _page.streamTextContent({
+            includeMarkedContent: true,
+            disableNormalization: true
+          });
+        }).then((readableStream) => {
           textLayer.style.left = canvas.offsetLeft + 'px';
           textLayer.style.top = canvas.offsetTop + 'px';
           textLayer.style.height = canvas.offsetHeight + 'px';
           textLayer.style.width = canvas.offsetWidth + 'px';
 
           const textLayerRenderTask = renderTextLayer({
-            textContentSource: textContent,
+            textContentSource: readableStream,
             container: textLayer,
             viewport: viewport,
             textDivs: []
           });
 
-          textLayerRenderTask.promise.then((value) => {
-            console.log('Text Layer rendered!', value);
+          textLayerRenderTask.promise.then(() => {
+            // TODO
           }, (reason) => {
             console.error(reason);
           });

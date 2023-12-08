@@ -1981,7 +1981,7 @@
   display:none;
 }
 
-.pdfViewer{
+.pdfViewer {
   --scale-factor:1;
 
   padding-bottom:var(--pdfViewer-padding-bottom);
