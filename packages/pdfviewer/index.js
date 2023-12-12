@@ -33,7 +33,6 @@ export default class NtButton extends BaseComponent {
   }
 
   connectedCallback() {
-    console.log(`pdfjs-dist: ${version}`);
     this.render();
 
     const viewer = this.shadowRoot.getElementById('viewer');
