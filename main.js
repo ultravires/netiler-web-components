@@ -1,15 +1,16 @@
-import NetilerUI from '@netiler/web-components';
-import '@netiler/web-components/theme';
+import NetilerUI from '/dist/index.js';
+import '/packages/theme/default/index.css';
+// import '/dist/style.css';
+import 'virtual:uno.css';
 
-// NetilerUI.getComponent( 'NtIcon' ).iconURL = 'http://localhost:5173/icons/index.js';
-
+NetilerUI.getComponent('NtIcon').iconURL =
+  'http://localhost:5173/dist/icons.js';
 // https://github.com/unocss/unocss/issues/1995
-import('virtual:uno.css');
+// import('virtual:uno.css');
 
 NetilerUI.define();
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const button1 = document.getElementById('button1');
   button1.onclick = () => {
     alert('弹窗事件1');

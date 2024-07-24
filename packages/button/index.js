@@ -1,5 +1,5 @@
 import BaseComponent from '@packages/base';
-import style from './index.css?inline' assert { type: 'css' };
+import style from './index.css?inline';
 
 export default class NtButton extends BaseComponent {
   #button;
@@ -8,12 +8,12 @@ export default class NtButton extends BaseComponent {
   static componentName = 'nt-button';
 
   static get observedAttributes() {
-    return [ 'disabled', 'color', 'loading', 'type', 'nativeType' ];
+    return ['disabled', 'color', 'loading', 'type', 'nativeType'];
   }
 
   constructor() {
     super();
-    this.adoptStyleSheet( style );
+    this.adoptStyleSheet(style);
   }
 
   connectedCallback() {
@@ -29,8 +29,10 @@ export default class NtButton extends BaseComponent {
     } else {
       const nativeType = this.nativeType;
       this.shadowRoot.innerHTML = `
-      <button class="button" part="button" type=${nativeType} ${this.disabled ? 'disabled' : ''}>
-        <slot class="loading" name="loading" ${ this.loading ? '' : 'hidden' }>
+      <button class="button" part="button" type=${nativeType} ${
+        this.disabled ? 'disabled' : ''
+      }>
+        <slot class="loading" name="loading" ${this.loading ? '' : 'hidden'}>
           <nt-loading></nt-loading>
         </slot>
         <slot></slot>
@@ -43,18 +45,18 @@ export default class NtButton extends BaseComponent {
   }
 
   get disabled() {
-    return this.hasAttribute( 'disabled' );
+    return this.hasAttribute('disabled');
   }
 
-  set disabled( value ) {
-    if ( value ) {
+  set disabled(value) {
+    if (value) {
       this.setAttribute('disabled', '');
-      this.#button?.setAttribute( 'disabled', '' );
-      this.#button?.setAttribute( 'disabled', '' );
+      this.#button?.setAttribute('disabled', '');
+      this.#button?.setAttribute('disabled', '');
     } else {
       this.removeAttribute('disabled');
-      this.#button?.removeAttribute( 'disabled' );
-      this.#button?.removeAttribute( 'disabled' );
+      this.#button?.removeAttribute('disabled');
+      this.#button?.removeAttribute('disabled');
     }
   }
 
@@ -74,20 +76,20 @@ export default class NtButton extends BaseComponent {
     if (value) {
       this.disabled = true;
       this.#loading && (this.#loading.hidden = false);
-      this.setAttribute( 'loading', '' );
+      this.setAttribute('loading', '');
     } else {
       this.#loading && (this.#loading.hidden = true);
       this.disabled = false;
-      this.removeAttribute( 'loading' );
+      this.removeAttribute('loading');
     }
   }
 
   get type() {
-    return this.getAttribute( 'type' );
+    return this.getAttribute('type');
   }
 
   set type(value) {
-    this.setAttribute( 'type', value );
+    this.setAttribute('type', value);
   }
 
   get nativeType() {
@@ -98,21 +100,24 @@ export default class NtButton extends BaseComponent {
     this.setAttribute('native-Type', value);
   }
 
-  attributeChangedCallback( prop, oldValue, newValue ) {
-    if ( oldValue === newValue ) return;
+  attributeChangedCallback(prop, oldValue, newValue) {
+    if (oldValue === newValue) return;
 
-    if ( prop === 'color' && !['primary', 'success', 'warning', 'danger', 'default'].includes(newValue) ) {
+    if (
+      prop === 'color' &&
+      !['primary', 'success', 'warning', 'danger', 'default'].includes(newValue)
+    ) {
       this.style.setProperty('--nt-button-primary-color', newValue);
       return;
     }
 
-    if ( prop === 'loading' ) {
-      this.loading = ( newValue !== null );
+    if (prop === 'loading') {
+      this.loading = newValue !== null;
       return;
     }
 
-    if ( prop === 'disabled' ) {
-      this.disabled = ( newValue !== null );
+    if (prop === 'disabled') {
+      this.disabled = newValue !== null;
       return;
     }
   }

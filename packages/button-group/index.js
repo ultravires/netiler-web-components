@@ -1,12 +1,12 @@
-import BaseComponent from "@packages/base";
-import style from './index.css?inline' assert { type: 'css' };
+import BaseComponent from '@packages/base';
+import style from './index.css?inline';
 
 export default class ButtonGroup extends BaseComponent {
   static componentName = 'nt-button-group';
 
   constructor() {
     super();
-    this.adoptStyleSheet( style );
+    this.adoptStyleSheet(style);
   }
 
   connectedCallback() {

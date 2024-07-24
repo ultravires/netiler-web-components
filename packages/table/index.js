@@ -1,16 +1,16 @@
-import BaseComponent from "@packages/base";
-import style from './index.css?inline' assert { type: 'css' } ;
+import BaseComponent from '@packages/base';
+import style from './index.css?inline';
 
 export default class NtTable extends BaseComponent {
   static componentName = 'nt-table';
 
   static get observedAttributes() {
-    return [ 'data', 'columns'];
+    return ['data', 'columns'];
   }
 
   constructor() {
     super();
-    this.adoptStyleSheet( style );
+    this.adoptStyleSheet(style);
   }
 
   connectedCallback() {
@@ -65,7 +65,7 @@ export default class NtTable extends BaseComponent {
   }
 
   attributeChangedCallback(prop, oldValue, newValue) {
-    if ( oldValue === newValue ) return;
+    if (oldValue === newValue) return;
     this[prop] = JSON.parse(newValue);
   }
 }

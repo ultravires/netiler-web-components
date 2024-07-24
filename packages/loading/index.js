@@ -1,5 +1,5 @@
-import BaseComponent from "@packages/base";
-import style from './index.css?inline' assert { type: 'css' } ;
+import BaseComponent from '@packages/base';
+import style from './index.css?inline';
 
 export default class NtLoading extends BaseComponent {
   static componentName = 'nt-loading';
@@ -8,7 +8,7 @@ export default class NtLoading extends BaseComponent {
     super();
     this.adoptStyleSheet(style);
   }
-  
+
   connectedCallback() {
     this.render();
   }

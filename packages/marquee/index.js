@@ -1,11 +1,11 @@
 import BaseComponent from '@packages/base';
-import style from './index.css?inline' assert { type: 'css' };
+import style from './index.css?inline';
 
 export default class NtMarquee extends BaseComponent {
   static componentName = 'nt-marquee';
 
   static get observedAttributes() {
-    return [ 'animation-duration', 'animation-iteration-count' ];
+    return ['animation-duration', 'animation-iteration-count'];
   }
 
   constructor() {
@@ -38,4 +38,4 @@ export default class NtMarquee extends BaseComponent {
       return;
     }
   }
-};
+}
