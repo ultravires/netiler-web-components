@@ -1,16 +1,16 @@
-import BaseComponent from "@packages/base";
-import style from './index.css?inline' assert { type: 'css' };
+import BaseComponent from '@packages/base';
+import style from './index.css?inline';
 
 export default class NtHeader extends BaseComponent {
   static componentName = 'nt-header';
 
   static get observedAttributes() {
-    return [ 'height' ];
+    return ['height'];
   }
 
   constructor() {
     super();
-    this.adoptStyleSheet( style );
+    this.adoptStyleSheet(style);
   }
 
   connectedCallback() {
@@ -22,19 +22,19 @@ export default class NtHeader extends BaseComponent {
   }
 
   get height() {
-    return this.getAttribute( 'height' );
+    return this.getAttribute('height');
   }
 
-  set height( value ) {
-    this.setAttribute( 'height', value );
+  set height(value) {
+    this.setAttribute('height', value);
   }
 
-  attributeChangedCallback( prop, oldValue, newValue ) {
-    if ( oldValue === newValue ) {
+  attributeChangedCallback(prop, oldValue, newValue) {
+    if (oldValue === newValue) {
       return;
     }
-    if ( prop === 'height' ) {
-      this.style.setProperty( '--nt-header-height', newValue );
+    if (prop === 'height') {
+      this.style.setProperty('--nt-header-height', newValue);
     }
   }
 }

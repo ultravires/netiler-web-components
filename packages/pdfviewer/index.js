@@ -1,7 +1,13 @@
-import { getDocument, GlobalWorkerOptions, renderTextLayer, version } from 'pdfjs-dist';
+import {
+  getDocument,
+  GlobalWorkerOptions,
+  renderTextLayer,
+  version,
+} from 'pdfjs-dist';
 import BaseComponent from '@packages/base';
-import pdfStyle from './pdf_viewer.css' assert { type: 'css' };
-import style from './index.css' assert { type: 'css' };
+import pdfStyle from 'pdfjs-dist/web/pdf_viewer.css?inline';
+import style from './index.css?inline';
+import viewerTemplate from './viewer.html?raw';
 
 export default class NtButton extends BaseComponent {
   static componentName = 'nt-pdf-viewer';
@@ -13,7 +19,7 @@ export default class NtButton extends BaseComponent {
   constructor() {
     super();
     this.adoptStyleSheet(style);
-    this.adoptStyleSheet(pdfStyle)
+    this.adoptStyleSheet(pdfStyle);
   }
 
   get file() {
@@ -42,30 +48,39 @@ export default class NtButton extends BaseComponent {
     let pdf = null;
     const PDF_FILE = this.file;
 
-    GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url);
+    /* @vite-ignore */
+    GlobalWorkerOptions.workerSrc = new URL(
+      'pdfjs-dist/build/pdf.worker.min.mjs',
+      import.meta.url
+    ).href;
     const loadingTask = getDocument({
       url: PDF_FILE,
-      cMapUrl: './cmaps',
-      cMapPacked: false,
-      standardFontDataUrl: './stardard_fonts/',
-      enableXfa: true
+      /* @vite-ignore */
+      cMapUrl: './cmaps/',
+      cMapPacked: true,
+      /* @vite-ignore */
+      standardFontDataUrl: './standard_fonts/',
+      enableXfa: true,
     });
     loadingTask.promise.then((_pdf) => {
       pdf = _pdf;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const num = Number.parseInt(entry.target.dataset.pageNumber);
-            renderPage(num);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.0
-      });
-      for(let num = 1; num <= pdf.numPages; num++) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const num = Number.parseInt(entry.target.dataset.pageNumber);
+              renderPage(num);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.0,
+        }
+      );
+      for (let num = 1; num <= pdf.numPages; num++) {
         const page = createEmptyPage(num);
         viewer.appendChild(page);
         observer.observe(page);
@@ -92,60 +107,70 @@ export default class NtButton extends BaseComponent {
     }
 
     function renderPage(num) {
-      pdf.getPage(num).then((_page) => {
-        const page = viewer.querySelector(`#pageContainer${num}`);
-        const canvas = page.querySelector(`#page${num}`);
-        const textLayer = page.querySelector(`#textLayer${num}`);
+      pdf.getPage(num).then(
+        (_page) => {
+          const page = viewer.querySelector(`#pageContainer${num}`);
+          const canvas = page.querySelector(`#page${num}`);
+          const textLayer = page.querySelector(`#textLayer${num}`);
 
-        // load page
-        const unscaledViewport = _page.getViewport({ scale: 1.0 });
-        const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
-        viewer.style.setProperty('--scale-factor', DEFAULT_SCALE);
-        const outputScale = window.devicePixelRatio || 1;
-        const viewport = _page.getViewport({ scale: DEFAULT_SCALE * outputScale });
-        const canvasContext = canvas.getContext('2d');
-        canvas.height = Math.floor(viewport.height * outputScale);
-        canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.style.height = Math.floor(viewport.height) + 'px';
-        canvas.style.width = Math.floor(viewport.width) + 'px';
-        const renderContext = {
-          canvasContext,
-          viewport
-        };
-        const renderTask = _page.render(renderContext);
-        renderTask.promise.then(() => {
-          return _page.streamTextContent({
-            includeMarkedContent: true,
-            disableNormalization: true
+          // load page
+          const unscaledViewport = _page.getViewport({ scale: 1.0 });
+          const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
+          viewer.style.setProperty('--scale-factor', DEFAULT_SCALE);
+          const outputScale = window.devicePixelRatio || 1;
+          const viewport = _page.getViewport({
+            scale: DEFAULT_SCALE * outputScale,
           });
-        }).then((readableStream) => {
-          textLayer.style.left = canvas.offsetLeft + 'px';
-          textLayer.style.top = canvas.offsetTop + 'px';
-          textLayer.style.height = canvas.offsetHeight + 'px';
-          textLayer.style.width = canvas.offsetWidth + 'px';
+          const canvasContext = canvas.getContext('2d');
+          canvas.height = Math.floor(viewport.height * outputScale);
+          canvas.width = Math.floor(viewport.width * outputScale);
+          canvas.style.height = Math.floor(viewport.height) + 'px';
+          canvas.style.width = Math.floor(viewport.width) + 'px';
+          const renderContext = {
+            canvasContext,
+            viewport,
+          };
+          const renderTask = _page.render(renderContext);
+          renderTask.promise
+            .then(() => {
+              return _page.streamTextContent({
+                includeMarkedContent: true,
+                disableNormalization: true,
+              });
+            })
+            .then((readableStream) => {
+              textLayer.style.left = canvas.offsetLeft + 'px';
+              textLayer.style.top = canvas.offsetTop + 'px';
+              textLayer.style.height = canvas.offsetHeight + 'px';
+              textLayer.style.width = canvas.offsetWidth + 'px';
 
-          const textLayerRenderTask = renderTextLayer({
-            textContentSource: readableStream,
-            container: textLayer,
-            viewport: viewport,
-            textDivs: []
-          });
+              const textLayerRenderTask = renderTextLayer({
+                textContentSource: readableStream,
+                container: textLayer,
+                viewport: viewport,
+                textDivs: [],
+              });
 
-          textLayerRenderTask.promise.then(() => {
-            // TODO
-          }, (reason) => {
-            console.error(reason);
-          });
+              textLayerRenderTask.promise.then(
+                () => {
+                  // TODO
+                },
+                (reason) => {
+                  console.error(reason);
+                }
+              );
 
-          page.setAttribute('data-loaded', true);
-        });
-      }, (reason) => {
-        console.error(reason);
-      });
+              page.setAttribute('data-loaded', true);
+            });
+        },
+        (reason) => {
+          console.error(reason);
+        }
+      );
     }
   }
 
   render() {
-    this.shadowRoot.innerHTML = `<div id="viewer" class="pdfViewer"></div>`;
+    this.shadowRoot.innerHTML = viewerTemplate;
   }
 }
