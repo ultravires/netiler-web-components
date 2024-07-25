@@ -1,13 +1,15 @@
+import BaseComponent from '@packages/base';
+import style from './index.css?inline';
+import viewerTemplate from './web/viewer.html?raw';
+import viewerStyle from './web/viewer.css?inline';
 import {
   getDocument,
   GlobalWorkerOptions,
-  renderTextLayer,
+  TextLayer,
   version,
+  build,
 } from 'pdfjs-dist';
-import BaseComponent from '@packages/base';
-import pdfStyle from 'pdfjs-dist/web/pdf_viewer.css?inline';
-import style from './index.css?inline';
-import viewerTemplate from './viewer.html?raw';
+import workerSrc from './build/pdf.worker.mjs?worker&url';
 
 export default class NtButton extends BaseComponent {
   static componentName = 'nt-pdf-viewer';
@@ -19,7 +21,7 @@ export default class NtButton extends BaseComponent {
   constructor() {
     super();
     this.adoptStyleSheet(style);
-    this.adoptStyleSheet(pdfStyle);
+    this.adoptStyleSheet(viewerStyle);
   }
 
   get file() {
@@ -40,30 +42,38 @@ export default class NtButton extends BaseComponent {
 
   connectedCallback() {
     this.render();
+    this.renderPDF();
+  }
 
+  render() {
+    this.shadowRoot.innerHTML = viewerTemplate;
+  }
+
+  renderPDF() {
     const viewer = this.shadowRoot.getElementById('viewer');
     /**
      * @type { import('pdfjs-dist').PDFDocumentProxy }
      */
     let pdf = null;
     const PDF_FILE = this.file;
-
-    /* @vite-ignore */
-    GlobalWorkerOptions.workerSrc = new URL(
-      'pdfjs-dist/build/pdf.worker.min.mjs',
-      import.meta.url
-    ).href;
+    GlobalWorkerOptions.workerSrc = workerSrc;
     const loadingTask = getDocument({
       url: PDF_FILE,
-      /* @vite-ignore */
-      cMapUrl: './cmaps/',
+      cMapUrl: new URL('cmaps/', import.meta.url).href,
       cMapPacked: true,
-      /* @vite-ignore */
-      standardFontDataUrl: './standard_fonts/',
+      standardFontDataUrl: new URL('standard_fonts/', import.meta.url).href,
       enableXfa: true,
     });
-    loadingTask.promise.then((_pdf) => {
-      pdf = _pdf;
+    loadingTask.promise.then(async (pdfDocument) => {
+      const { info } = await pdfDocument.getMetadata();
+      console.log(
+        `PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` +
+          `${(info.Producer || '-').trim()} / ${(
+            info.Creator || '-'
+          ).trim()}] ` +
+          `(PDF.js: ${version || '?'} [${build || '?'}])`
+      );
+      pdf = pdfDocument;
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -86,7 +96,6 @@ export default class NtButton extends BaseComponent {
         observer.observe(page);
       }
     });
-
     function createEmptyPage(num) {
       const page = document.createElement('div');
       page.setAttribute('id', `pageContainer${num}`);
@@ -105,14 +114,12 @@ export default class NtButton extends BaseComponent {
       page.appendChild(textLayer);
       return page;
     }
-
     function renderPage(num) {
       pdf.getPage(num).then(
         (_page) => {
           const page = viewer.querySelector(`#pageContainer${num}`);
           const canvas = page.querySelector(`#page${num}`);
-          const textLayer = page.querySelector(`#textLayer${num}`);
-
+          const textLayerContainer = page.querySelector(`#textLayer${num}`);
           // load page
           const unscaledViewport = _page.getViewport({ scale: 1.0 });
           const DEFAULT_SCALE = page.offsetWidth / unscaledViewport.width;
@@ -139,27 +146,17 @@ export default class NtButton extends BaseComponent {
               });
             })
             .then((readableStream) => {
-              textLayer.style.left = canvas.offsetLeft + 'px';
-              textLayer.style.top = canvas.offsetTop + 'px';
-              textLayer.style.height = canvas.offsetHeight + 'px';
-              textLayer.style.width = canvas.offsetWidth + 'px';
+              textLayerContainer.style.left = canvas.offsetLeft + 'px';
+              textLayerContainer.style.top = canvas.offsetTop + 'px';
+              textLayerContainer.style.height = canvas.offsetHeight + 'px';
+              textLayerContainer.style.width = canvas.offsetWidth + 'px';
 
-              const textLayerRenderTask = renderTextLayer({
+              const textLayer = new TextLayer({
                 textContentSource: readableStream,
-                container: textLayer,
-                viewport: viewport,
-                textDivs: [],
+                container: textLayerContainer,
+                viewport,
               });
-
-              textLayerRenderTask.promise.then(
-                () => {
-                  // TODO
-                },
-                (reason) => {
-                  console.error(reason);
-                }
-              );
-
+              textLayer.render();
               page.setAttribute('data-loaded', true);
             });
         },
@@ -168,9 +165,5 @@ export default class NtButton extends BaseComponent {
         }
       );
     }
-  }
-
-  render() {
-    this.shadowRoot.innerHTML = viewerTemplate;
   }
 }

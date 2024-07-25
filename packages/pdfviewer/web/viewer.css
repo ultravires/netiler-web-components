@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-:root {
+:host {
   --dir-factor: 1;
   /*#if !MOZCENTRAL*/
   --inline-start: left;
@@ -121,7 +121,7 @@
   --editorParams-stampAddImage-icon: url(images/toolbarButton-zoomIn.svg);
 }
 
-:root:dir(rtl) {
+:host:dir(rtl) {
   --dir-factor: -1;
   /*#if !MOZCENTRAL*/
   --inline-start: right;
@@ -130,7 +130,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :host {
     --main-color: rgb(249 249 250);
     --body-bg-color: rgb(42 42 46);
     --progressBar-color: rgb(0 96 223);
@@ -172,7 +172,7 @@
 }
 
 @media screen and (forced-colors: active) {
-  :root {
+  :host {
     --button-hover-color: Highlight;
     --doorhanger-hover-bg-color: Highlight;
     --toolbar-icon-opacity: 1;
@@ -202,7 +202,7 @@
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-  :root {
+  :host {
     --sidebar-transition-duration: 0;
   }
 }
@@ -371,7 +371,7 @@ body {
 }
 
 #loadingBar {
-  /* Define these variables here, and not in :root, to avoid reflowing the
+  /* Define these variables here, and not in :host, to avoid reflowing the
      entire viewer when updating progress (see issue 15958). */
   --progressBar-percent: 0%;
   --progressBar-end-offset: 0;
@@ -1197,7 +1197,7 @@ a:is(.toolbarButton, .secondaryToolbarButton)[href='#'] {
 }
 
 .thumbnail {
-  /* Define these variables here, and not in :root, since the individual
+  /* Define these variables here, and not in :host, since the individual
      thumbnails may have different sizes. */
   --thumbnail-width: 0;
   --thumbnail-height: 0;
@@ -1501,7 +1501,7 @@ dialog :link {
 }
 
 @media all and (max-width: 750px) {
-  :root {
+  :host {
     --editor-toolbar-base-offset: 40px;
   }
   #outerContainer .hiddenMediumView {

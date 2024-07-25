@@ -1,4 +1,8 @@
-const modules = import.meta.glob('./**/*.svg', { as: 'raw', eager: true });
+const modules = import.meta.glob('./**/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 const icons = [];
 for (let path in modules) {
   const name = path.replace(/(\.\/|\.svg)/g, '').replace(/\//g, '-');
