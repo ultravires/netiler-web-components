@@ -1,14 +1,14 @@
 export default class BaseComponent extends HTMLElement {
   static define(componentName = this.componentName, options = {}) {
-    if ( !window.customElements.get( componentName ) ) {
-      window.customElements.define( componentName, this );
+    if (!window.customElements.get(componentName)) {
+      window.customElements.define(componentName, this);
     }
   }
 
-  adoptStyleSheet( style, dom = this.shadowRoot) {
+  adoptStyleSheet(style, dom = this.shadowRoot) {
     const cssStyleSheet = new CSSStyleSheet();
-    cssStyleSheet.replace( style );
-    dom.adoptedStyleSheets = [ ...dom.adoptedStyleSheets, cssStyleSheet ];
+    cssStyleSheet.replace(style);
+    dom.adoptedStyleSheets = [...dom.adoptedStyleSheets, cssStyleSheet];
   }
 
   attributeChangedCallback(prop, oldValue, newValue) {
@@ -30,6 +30,6 @@ export default class BaseComponent extends HTMLElement {
   constructor() {
     super();
     this.internals = this.attachInternals();
-    this.attachShadow( { mode: 'open' } );
+    this.attachShadow({ mode: 'open' });
   }
 }
