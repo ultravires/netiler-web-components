@@ -855,7 +855,7 @@ export default class NtButton extends BaseComponent {
         kind: OptionKind.VIEWER,
       };
       defaultOptions.locale = {
-        value: navigator.language || 'en-US',
+        value: navigator.language || 'zh-CN',
         kind: OptionKind.VIEWER,
       };
     }
