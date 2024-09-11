@@ -190,7 +190,7 @@ export default class NtButton extends BaseComponent {
         () => window.cancelAnimationFrame(rAF),
         {
           once: true,
-        }
+        },
       );
       return state;
     }
@@ -208,7 +208,7 @@ export default class NtButton extends BaseComponent {
       }
       if (replaceInvisible) {
         return str.replaceAll(InvisibleCharsRegExp, (m) =>
-          m === '\x00' ? '' : ' '
+          m === '\x00' ? '' : ' ',
         );
       }
       return str.replaceAll('\x00', '');
@@ -333,7 +333,7 @@ export default class NtButton extends BaseComponent {
         views,
         horizontal
           ? isElementNextAfterViewHorizontally
-          : isElementBottomAfterViewTop
+          : isElementBottomAfterViewTop,
       );
       if (
         firstVisibleElementInd > 0 &&
@@ -343,7 +343,7 @@ export default class NtButton extends BaseComponent {
         firstVisibleElementInd = backtrackBeforeAllVisibleElements(
           firstVisibleElementInd,
           views,
-          top
+          top,
         );
       }
       let lastEdge = horizontal ? right : -1;
@@ -484,7 +484,7 @@ export default class NtButton extends BaseComponent {
         if (scrollbarWidth > 0) {
           this.#style.setProperty(
             '--progressBar-end-offset',
-            `${scrollbarWidth}px`
+            `${scrollbarWidth}px`,
           );
         }
       }
@@ -899,7 +899,7 @@ export default class NtButton extends BaseComponent {
             }
             console.warn(
               'setAll: The Preferences may override manually set AppOptions; ' +
-                'please use the "disablePreferences"-option in order to prevent that.'
+                'please use the "disablePreferences"-option in order to prevent that.',
             );
             break;
           }
@@ -988,7 +988,7 @@ export default class NtButton extends BaseComponent {
         }
         if (!Array.isArray(explicitDest)) {
           console.error(
-            `goToDestination: "${explicitDest}" is not a valid destination array, for dest="${dest}".`
+            `goToDestination: "${explicitDest}" is not a valid destination array, for dest="${dest}".`,
           );
           return;
         }
@@ -1000,7 +1000,7 @@ export default class NtButton extends BaseComponent {
               pageNumber = (await this.pdfDocument.getPageIndex(destRef)) + 1;
             } catch {
               console.error(
-                `goToDestination: "${destRef}" is not a valid page reference, for dest="${dest}".`
+                `goToDestination: "${destRef}" is not a valid page reference, for dest="${dest}".`,
               );
               return;
             }
@@ -1010,7 +1010,7 @@ export default class NtButton extends BaseComponent {
         }
         if (!pageNumber || pageNumber < 1 || pageNumber > this.pagesCount) {
           console.error(
-            `goToDestination: "${pageNumber}" is not a valid page number, for dest="${dest}".`
+            `goToDestination: "${pageNumber}" is not a valid page number, for dest="${dest}".`,
           );
           return;
         }
@@ -1044,7 +1044,7 @@ export default class NtButton extends BaseComponent {
           )
         ) {
           console.error(
-            `PDFLinkService.goToPage: "${val}" is not a valid page.`
+            `PDFLinkService.goToPage: "${val}" is not a valid page.`,
           );
           return;
         }
@@ -1162,7 +1162,7 @@ export default class NtButton extends BaseComponent {
             } else if (zoomArg === 'FitR') {
               if (zoomArgs.length !== 5) {
                 console.error(
-                  'PDFLinkService.setHash: Not enough parameters for "FitR".'
+                  'PDFLinkService.setHash: Not enough parameters for "FitR".',
                 );
               } else {
                 dest = [
@@ -1178,7 +1178,7 @@ export default class NtButton extends BaseComponent {
               }
             } else {
               console.error(
-                `PDFLinkService.setHash: "${zoomArg}" is not a valid zoom value.`
+                `PDFLinkService.setHash: "${zoomArg}" is not a valid zoom value.`,
               );
             }
           }
@@ -1218,8 +1218,8 @@ export default class NtButton extends BaseComponent {
         }
         console.error(
           `PDFLinkService.setHash: "${unescape(
-            hash
-          )}" is not a valid destination.`
+            hash,
+          )}" is not a valid destination.`,
         );
       }
       executeNamedAction(action) {
@@ -1265,7 +1265,7 @@ export default class NtButton extends BaseComponent {
         }
         optionalContentConfig.setOCGState(action);
         this.pdfViewer.optionalContentConfigPromise = Promise.resolve(
-          optionalContentConfig
+          optionalContentConfig,
         );
       }
       static #isValidExplicitDest(dest) {
@@ -1577,7 +1577,7 @@ export default class NtButton extends BaseComponent {
                 typeof prefVal === typeof val ? prefVal : val;
             }
             AppOptions.setAll(options, true);
-          }
+          },
         );
       }
       async _writeToStorage(prefObj) {
@@ -1616,7 +1616,7 @@ export default class NtButton extends BaseComponent {
             value = value.toString();
           } else {
             throw new Error(
-              `Set preference: "${value}" is a ${valueType}, expected a ${defaultType}.`
+              `Set preference: "${value}" is a ${valueType}, expected a ${defaultType}.`,
             );
           }
         } else if (valueType === 'number' && !Number.isInteger(value)) {
@@ -1789,8 +1789,8 @@ export default class NtButton extends BaseComponent {
         default:
           scope.reportError(
             new TypeError(
-              `Variable type not supported: $${name}, ${typeof arg}`
-            )
+              `Variable type not supported: $${name}, ${typeof arg}`,
+            ),
           );
           return new FluentNone(`$${name}`);
       }
@@ -1887,7 +1887,7 @@ export default class NtButton extends BaseComponent {
           scope.dirty.delete(ptn);
           throw new RangeError(
             `Too many placeables expanded: ${scope.placeables}, ` +
-              `max allowed is ${MAX_PLACEABLES}`
+              `max allowed is ${MAX_PLACEABLES}`,
           );
         }
         if (useIsolating) {
@@ -2019,7 +2019,7 @@ export default class NtButton extends BaseComponent {
     class FluentBundle {
       constructor(
         locales,
-        { functions, useIsolating = true, transform = (v) => v } = {}
+        { functions, useIsolating = true, transform = (v) => v } = {},
       ) {
         this._terms = new Map();
         this._messages = new Map();
@@ -2046,7 +2046,9 @@ export default class NtButton extends BaseComponent {
           if (entry.id.startsWith('-')) {
             if (allowOverrides === false && this._terms.has(entry.id)) {
               errors.push(
-                new Error(`Attempt to override an existing term: "${entry.id}"`)
+                new Error(
+                  `Attempt to override an existing term: "${entry.id}"`,
+                ),
               );
               continue;
             }
@@ -2055,8 +2057,8 @@ export default class NtButton extends BaseComponent {
             if (allowOverrides === false && this._messages.has(entry.id)) {
               errors.push(
                 new Error(
-                  `Attempt to override an existing message: "${entry.id}"`
-                )
+                  `Attempt to override an existing message: "${entry.id}"`,
+                ),
               );
               continue;
             }
@@ -2238,7 +2240,7 @@ export default class NtButton extends BaseComponent {
             if (element instanceof Indent) {
               element = element.value.slice(
                 0,
-                element.value.length - commonIndent
+                element.value.length - commonIndent,
               );
             }
             if (element) {
@@ -2538,7 +2540,7 @@ export default class NtButton extends BaseComponent {
         } else {
           const templateElement = element.ownerDocument.createElementNS(
             'http://www.w3.org/1999/xhtml',
-            'template'
+            'template',
           );
           templateElement.innerHTML = value;
           overlayChildNodes(templateElement.content, element);
@@ -2564,11 +2566,11 @@ export default class NtButton extends BaseComponent {
         console.warn(
           `An element of forbidden type "${childNode.localName}" was found in ` +
             'the translation. Only safe text-level elements and elements with ' +
-            'data-l10n-name are allowed.'
+            'data-l10n-name are allowed.',
         );
         fromFragment.replaceChild(
           createTextNodeFromTextContent(childNode),
-          childNode
+          childNode,
         );
       }
       toElement.textContent = '';
@@ -2615,11 +2617,11 @@ export default class NtButton extends BaseComponent {
     function getNodeForNamedElement(sourceElement, translatedChild) {
       const childName = translatedChild.getAttribute('data-l10n-name');
       const sourceChild = sourceElement.querySelector(
-        `[data-l10n-name="${childName}"]`
+        `[data-l10n-name="${childName}"]`,
       );
       if (!sourceChild) {
         console.warn(
-          `An element named "${childName}" wasn't found in the source.`
+          `An element named "${childName}" wasn't found in the source.`,
         );
         return createTextNodeFromTextContent(translatedChild);
       }
@@ -2627,7 +2629,7 @@ export default class NtButton extends BaseComponent {
         console.warn(
           `An element named "${childName}" was found in the translation ` +
             `but its type ${translatedChild.localName} didn't match the ` +
-            `element found in the source (${sourceChild.localName}).`
+            `element found in the source (${sourceChild.localName}).`,
         );
         return createTextNodeFromTextContent(translatedChild);
       }
@@ -2697,7 +2699,7 @@ export default class NtButton extends BaseComponent {
           this.iterator = iterable[Symbol.iterator]();
         } else {
           throw new TypeError(
-            'Argument must implement the iteration protocol.'
+            'Argument must implement the iteration protocol.',
           );
         }
       }
@@ -2734,7 +2736,7 @@ export default class NtButton extends BaseComponent {
           this.iterator = iterable[Symbol.iterator]();
         } else {
           throw new TypeError(
-            'Argument must implement the iteration protocol.'
+            'Argument must implement the iteration protocol.',
           );
         }
       }
@@ -2775,7 +2777,7 @@ export default class NtButton extends BaseComponent {
       }
       removeResourceIds(resourceIds) {
         this.resourceIds = this.resourceIds.filter(
-          (r) => !resourceIds.includes(r)
+          (r) => !resourceIds.includes(r),
         );
         this.onChange();
         return this.resourceIds.length;
@@ -2822,7 +2824,7 @@ export default class NtButton extends BaseComponent {
       }
       onChange(eager = false) {
         this.bundles = CachedAsyncIterable.from(
-          this.generateBundles(this.resourceIds)
+          this.generateBundles(this.resourceIds),
         );
         if (eager) {
           this.bundles.touchNext(2);
@@ -2850,7 +2852,7 @@ export default class NtButton extends BaseComponent {
           let value = bundle.formatPattern(
             message.attributes[name],
             args,
-            errors
+            errors,
           );
           formatted.attributes[i] = {
             name,
@@ -2875,7 +2877,7 @@ export default class NtButton extends BaseComponent {
             const locale = bundle.locales[0];
             const errors = messageErrors.join(', ');
             console.warn(
-              `[fluent][resolver] errors in ${locale}/${id}: ${errors}.`
+              `[fluent][resolver] errors in ${locale}/${id}: ${errors}.`,
             );
           }
         } else {
@@ -2932,7 +2934,7 @@ export default class NtButton extends BaseComponent {
             newRoot.contains(root)
           ) {
             throw new Error(
-              'Cannot add a root that overlaps with existing root.'
+              'Cannot add a root that overlaps with existing root.',
             );
           }
         }
@@ -2944,7 +2946,7 @@ export default class NtButton extends BaseComponent {
         } else {
           this.windowElement = newRoot.ownerDocument.defaultView;
           this.mutationObserver = new this.windowElement.MutationObserver(
-            (mutations) => this.translateMutations(mutations)
+            (mutations) => this.translateMutations(mutations),
           );
         }
         this.roots.add(newRoot);
@@ -3154,12 +3156,12 @@ export default class NtButton extends BaseComponent {
         const generateBundles = !lang
           ? genericl10n_GenericL10n.#generateBundlesFallback.bind(
               genericl10n_GenericL10n,
-              this.getLanguage()
+              this.getLanguage(),
             )
           : genericl10n_GenericL10n.#generateBundles.bind(
               genericl10n_GenericL10n,
               'en-us',
-              this.getLanguage()
+              this.getLanguage(),
             );
         this._setL10n(new DOMLocalization([], generateBundles));
       }
@@ -3194,7 +3196,7 @@ export default class NtButton extends BaseComponent {
       static async #getPaths() {
         try {
           const { href } = document.querySelector(
-            `link[type="application/l10n"]`
+            `link[type="application/l10n"]`,
           );
           const paths = await fetchData(href, 'json');
           return {
@@ -3318,7 +3320,7 @@ export default class NtButton extends BaseComponent {
         },
         container,
         overlayManager,
-        eventBus
+        eventBus,
       ) {
         this.#dialog = dialog;
         this.#optionDescription = optionDescription;
@@ -3482,7 +3484,7 @@ export default class NtButton extends BaseComponent {
           this.#telemetryData || {
             action: 'alt_text_cancel',
             alt_text_keyboard: !this.#hasUsedPointer,
-          }
+          },
         );
         this.#telemetryData = null;
         this.#removeOnClickListeners();
@@ -3692,7 +3694,7 @@ export default class NtButton extends BaseComponent {
         const midY = rect.y + rect.height / 2;
         let caretPosition = CaretBrowsingMode.#caretPositionFromPoint(
           caretX,
-          midY
+          midY,
         );
         let parentElement = caretPosition.offsetNode?.parentElement;
         if (parentElement && parentElement !== element) {
@@ -3708,7 +3710,7 @@ export default class NtButton extends BaseComponent {
           }
           caretPosition = CaretBrowsingMode.#caretPositionFromPoint(
             caretX,
-            midY
+            midY,
           );
           parentElement = caretPosition.offsetNode?.parentElement;
           for (const [el, visibility] of savedVisibilities) {
@@ -3734,7 +3736,7 @@ export default class NtButton extends BaseComponent {
         selection,
         newLineElement,
         newLineElementRect,
-        caretX
+        caretX,
       ) {
         if (this.#isVisible(newLineElementRect)) {
           this.#setCaretPositionHelper(
@@ -3742,7 +3744,7 @@ export default class NtButton extends BaseComponent {
             caretX,
             select,
             newLineElement,
-            newLineElementRect
+            newLineElementRect,
           );
           return;
         }
@@ -3754,11 +3756,11 @@ export default class NtButton extends BaseComponent {
             caretX,
             select,
             newLineElement,
-            null
+            null,
           ),
           {
             once: true,
-          }
+          },
         );
         newLineElement.scrollIntoView();
       }
@@ -3768,14 +3770,14 @@ export default class NtButton extends BaseComponent {
           const pageNumber = parseInt(page.getAttribute('data-page-number'));
           const nextPage = isUp ? pageNumber - 1 : pageNumber + 1;
           textLayer = this.#viewerContainer.querySelector(
-            `.page[data-page-number="${nextPage}"] .textLayer`
+            `.page[data-page-number="${nextPage}"] .textLayer`,
           );
           if (!textLayer) {
             return null;
           }
           const walker = document.createTreeWalker(
             textLayer,
-            NodeFilter.SHOW_TEXT
+            NodeFilter.SHOW_TEXT,
           );
           const node = isUp ? walker.lastChild() : walker.firstChild();
           if (node) {
@@ -3833,7 +3835,7 @@ export default class NtButton extends BaseComponent {
             selection,
             parentElement,
             parentElement.getBoundingClientRect(),
-            caretX
+            caretX,
           );
           return;
         }
@@ -3845,7 +3847,7 @@ export default class NtButton extends BaseComponent {
             selection,
             newLineElement,
             newLineElementRect,
-            caretX
+            caretX,
           );
           return;
         }
@@ -3861,7 +3863,7 @@ export default class NtButton extends BaseComponent {
               selection,
               element,
               elementRect,
-              caretX
+              caretX,
             );
             return;
           }
@@ -3871,7 +3873,7 @@ export default class NtButton extends BaseComponent {
           selection,
           newLineElement,
           newLineElementRect,
-          caretX
+          caretX,
         );
       }
     } // CONCATENATED MODULE: ./web/download_manager.js
@@ -3896,7 +3898,7 @@ export default class NtButton extends BaseComponent {
         const blobUrl = URL.createObjectURL(
           new Blob([data], {
             type: contentType,
-          })
+          }),
         );
         download(blobUrl, filename);
       }
@@ -3909,7 +3911,7 @@ export default class NtButton extends BaseComponent {
             blobUrl = URL.createObjectURL(
               new Blob([data], {
                 type: contentType,
-              })
+              }),
             );
             this.#openBlobUrls.set(data, blobUrl);
           }
@@ -3936,7 +3938,7 @@ export default class NtButton extends BaseComponent {
           blobUrl = URL.createObjectURL(
             new Blob([data], {
               type: 'application/pdf',
-            })
+            }),
           );
         } else {
           if (!createValidAbsoluteUrl(url, 'http://example.com')) {
@@ -4034,7 +4036,7 @@ export default class NtButton extends BaseComponent {
         }
         this.label.setAttribute(
           'data-l10n-id',
-          `pdfjs-password-${passwordIncorrect ? 'invalid' : 'label'}`
+          `pdfjs-password-${passwordIncorrect ? 'invalid' : 'label'}`,
         );
       }
       async close() {
@@ -4166,7 +4168,7 @@ export default class NtButton extends BaseComponent {
         this._updateCurrentTreeItem(treeItem);
         this.container.scrollTo(
           treeItem.offsetLeft,
-          treeItem.offsetTop + TREEITEM_OFFSET_TOP
+          treeItem.offsetTop + TREEITEM_OFFSET_TOP,
         );
       }
     } // CONCATENATED MODULE: ./web/pdf_attachment_viewer.js
@@ -4177,7 +4179,7 @@ export default class NtButton extends BaseComponent {
         this.downloadManager = options.downloadManager;
         this.eventBus._on(
           'fileattachmentannotation',
-          this.#appendAttachment.bind(this)
+          this.#appendAttachment.bind(this),
         );
       }
       reset(keepRenderedCapability = false) {
@@ -4288,7 +4290,7 @@ export default class NtButton extends BaseComponent {
           this.element.removeEventListener(
             'mousedown',
             this._onMouseDown,
-            true
+            true,
           );
           this._endPan();
           this.element.classList.remove(CSS_CLASS_GRAB);
@@ -4303,7 +4305,7 @@ export default class NtButton extends BaseComponent {
       }
       ignoreTarget(node) {
         return node.matches(
-          'a[href], a[href] *, input, textarea, button, button *, select, option'
+          'a[href], a[href] *, input, textarea, button, button *, select, option',
         );
       }
       #onMouseDown(event) {
@@ -4461,7 +4463,7 @@ export default class NtButton extends BaseComponent {
           '_handTool',
           new GrabToPan({
             element: this.container,
-          })
+          }),
         );
       }
     } // CONCATENATED MODULE: ./web/pdf_document_properties.js
@@ -4488,7 +4490,7 @@ export default class NtButton extends BaseComponent {
         overlayManager,
         eventBus,
         l10n,
-        fileNameLookup
+        fileNameLookup,
       ) {
         this.dialog = dialog;
         this.fields = fields;
@@ -4505,7 +4507,7 @@ export default class NtButton extends BaseComponent {
           this._pagesRotation = evt.pagesRotation;
         });
         this._isNonMetricLocale = NON_METRIC_LOCALES.includes(
-          l10n.getLanguage()
+          l10n.getLanguage(),
         );
       }
       async open() {
@@ -4539,7 +4541,7 @@ export default class NtButton extends BaseComponent {
           this.pdfDocument.getPage(currentPageNumber).then((pdfPage) => {
             return this.#parsePageSize(
               getPageSizeInches(pdfPage),
-              pagesRotation
+              pagesRotation,
             );
           }),
           this.#parseLinearization(info.IsLinearized),
@@ -4621,7 +4623,7 @@ export default class NtButton extends BaseComponent {
             size_mb: mb >= 1 && (+mb.toPrecision(3)).toLocaleString(),
             size_kb: mb < 1 && (+kb.toPrecision(3)).toLocaleString(),
             size_b: fileSize.toLocaleString(),
-          }
+          },
         );
       }
       async #parsePageSize(pageSizeInches, pagesRotation) {
@@ -4668,7 +4670,7 @@ export default class NtButton extends BaseComponent {
             rawName = getPageName(
               intMillimeters,
               isPortrait,
-              METRIC_PAGE_NAMES
+              METRIC_PAGE_NAMES,
             );
             if (rawName) {
               sizeInches = {
@@ -4684,16 +4686,16 @@ export default class NtButton extends BaseComponent {
           this.l10n.get(
             `pdfjs-document-properties-page-size-unit-${
               this._isNonMetricLocale ? 'inches' : 'millimeters'
-            }`
+            }`,
           ),
           rawName &&
             this.l10n.get(
-              `pdfjs-document-properties-page-size-name-${rawName}`
+              `pdfjs-document-properties-page-size-name-${rawName}`,
             ),
           this.l10n.get(
             `pdfjs-document-properties-page-size-orientation-${
               isPortrait ? 'portrait' : 'landscape'
-            }`
+            }`,
           ),
         ]);
         return this.l10n.get(
@@ -4706,7 +4708,7 @@ export default class NtButton extends BaseComponent {
             unit,
             name,
             orientation,
-          }
+          },
         );
       }
       async #parseDate(inputDate) {
@@ -4721,7 +4723,7 @@ export default class NtButton extends BaseComponent {
       }
       #parseLinearization(isLinearized) {
         return this.l10n.get(
-          `pdfjs-document-properties-linearized-${isLinearized ? 'yes' : 'no'}`
+          `pdfjs-document-properties-linearized-${isLinearized ? 'yes' : 'no'}`,
         );
       }
     } // CONCATENATED MODULE: ./web/pdf_find_utils.js
@@ -4886,12 +4888,12 @@ export default class NtButton extends BaseComponent {
         if (syllablePositions.length === 0) {
           normalizationRegex = noSyllablesRegExp = new RegExp(
             regexp + '|(\\u0000)',
-            'gum'
+            'gum',
           );
         } else {
           normalizationRegex = withSyllablesRegExp = new RegExp(
             regexp + `|(${FIRST_CHAR_SYLLABLES_REG_EXP})`,
-            'gum'
+            'gum',
           );
         }
       }
@@ -5003,7 +5005,7 @@ export default class NtButton extends BaseComponent {
             shiftOrigin += newCharLen;
           }
           return p8;
-        }
+        },
       );
       positions.push([normalized.length, shift]);
       return [normalized, positions, hasDiacritics];
@@ -5255,7 +5257,7 @@ export default class NtButton extends BaseComponent {
           const [matchPos, matchLen] = getOriginalIndex(
             diffs,
             match.index,
-            match[0].length
+            match[0].length,
           );
           if (matchLen) {
             matches.push(matchPos);
@@ -5289,7 +5291,7 @@ export default class NtButton extends BaseComponent {
               return `${p5}\\p{M}*`;
             }
             return p5;
-          }
+          },
         );
         const trailingSpaces = '[ ]*';
         if (query.endsWith(trailingSpaces)) {
@@ -5298,7 +5300,7 @@ export default class NtButton extends BaseComponent {
         if (matchDiacritics) {
           if (hasDiacritics) {
             DIACRITICS_EXCEPTION_STR ||= String.fromCharCode(
-              ...DIACRITICS_EXCEPTION
+              ...DIACRITICS_EXCEPTION,
             );
             isUnicode = true;
             query = `${query}(?=[${DIACRITICS_EXCEPTION_STR}]|[^\\p{M}]|$)`;
@@ -5318,7 +5320,7 @@ export default class NtButton extends BaseComponent {
         if (typeof query === 'string') {
           [isUnicode, query] = this.#convertToRegExpString(
             query,
-            hasDiacritics
+            hasDiacritics,
           );
         } else {
           query = query
@@ -5327,7 +5329,7 @@ export default class NtButton extends BaseComponent {
             .map((q) => {
               const [isUnicodePart, queryPart] = this.#convertToRegExpString(
                 q,
-                hasDiacritics
+                hasDiacritics,
               );
               isUnicode ||= isUnicodePart;
               return `(${queryPart})`;
@@ -5388,13 +5390,13 @@ export default class NtButton extends BaseComponent {
                 (reason) => {
                   console.error(
                     `Unable to get text content for page ${i + 1}`,
-                    reason
+                    reason,
                   );
                   this._pageContents[i] = '';
                   this._pageDiffs[i] = null;
                   this._hasDiacritics[i] = false;
                   resolve();
-                }
+                },
               );
           });
         }
@@ -5599,7 +5601,7 @@ export default class NtButton extends BaseComponent {
     const MATCHES_COUNT_LIMIT = 1000;
     class PDFFindBar {
       #resizeObserver = new ResizeObserver(
-        this.#resizeObserverCallback.bind(this)
+        this.#resizeObserverCallback.bind(this),
       );
       constructor(options, eventBus) {
         this.opened = false;
@@ -5702,7 +5704,7 @@ export default class NtButton extends BaseComponent {
           const limit = MATCHES_COUNT_LIMIT;
           findResultsCount.setAttribute(
             'data-l10n-id',
-            `pdfjs-find-match-count${total > limit ? '-limit' : ''}`
+            `pdfjs-find-match-count${total > limit ? '-limit' : ''}`,
           );
           findResultsCount.setAttribute(
             'data-l10n-args',
@@ -5710,7 +5712,7 @@ export default class NtButton extends BaseComponent {
               limit,
               current,
               total,
-            })
+            }),
           );
         } else {
           findResultsCount.removeAttribute('data-l10n-id');
@@ -5779,14 +5781,14 @@ export default class NtButton extends BaseComponent {
             },
             {
               once: true,
-            }
+            },
           );
         });
       }
       initialize({ fingerprint, resetHistory = false, updateUrl = false }) {
         if (!fingerprint || typeof fingerprint !== 'string') {
           console.error(
-            'PDFHistory.initialize: The "fingerprint" must be a non-empty string.'
+            'PDFHistory.initialize: The "fingerprint" must be a non-empty string.',
           );
           return;
         }
@@ -5819,7 +5821,7 @@ export default class NtButton extends BaseComponent {
               page,
               rotation,
             },
-            true
+            true,
           );
           return;
         }
@@ -5857,20 +5859,20 @@ export default class NtButton extends BaseComponent {
         if (namedDest && typeof namedDest !== 'string') {
           console.error(
             'PDFHistory.push: ' +
-              `"${namedDest}" is not a valid namedDest parameter.`
+              `"${namedDest}" is not a valid namedDest parameter.`,
           );
           return;
         } else if (!Array.isArray(explicitDest)) {
           console.error(
             'PDFHistory.push: ' +
-              `"${explicitDest}" is not a valid explicitDest parameter.`
+              `"${explicitDest}" is not a valid explicitDest parameter.`,
           );
           return;
         } else if (!this.#isValidPage(pageNumber)) {
           if (pageNumber !== null || this._destination) {
             console.error(
               'PDFHistory.push: ' +
-                `"${pageNumber}" is not a valid pageNumber parameter.`
+                `"${pageNumber}" is not a valid pageNumber parameter.`,
             );
             return;
           }
@@ -5900,7 +5902,7 @@ export default class NtButton extends BaseComponent {
             page: pageNumber,
             rotation: this.linkService.rotation,
           },
-          forceReplace
+          forceReplace,
         );
         if (!this._popStateInProgress) {
           this._popStateInProgress = true;
@@ -5915,7 +5917,7 @@ export default class NtButton extends BaseComponent {
         }
         if (!this.#isValidPage(pageNumber)) {
           console.error(
-            `PDFHistory.pushPage: "${pageNumber}" is not a valid page number.`
+            `PDFHistory.pushPage: "${pageNumber}" is not a valid page number.`,
           );
           return;
         }
@@ -6147,7 +6149,7 @@ export default class NtButton extends BaseComponent {
               page,
               rotation,
             },
-            true
+            true,
           );
           return;
         }
@@ -6268,7 +6270,7 @@ export default class NtButton extends BaseComponent {
         });
         this.eventBus._on(
           'togglelayerstree',
-          this._toggleAllTreeItems.bind(this)
+          this._toggleAllTreeItems.bind(this),
         );
       }
       reset() {
@@ -6415,11 +6417,11 @@ export default class NtButton extends BaseComponent {
         this.downloadManager = options.downloadManager;
         this.eventBus._on(
           'toggleoutlinetree',
-          this._toggleAllTreeItems.bind(this)
+          this._toggleAllTreeItems.bind(this),
         );
         this.eventBus._on(
           'currentoutlineitem',
-          this._currentOutlineItem.bind(this)
+          this._currentOutlineItem.bind(this),
         );
         this.eventBus._on('pagechanging', (evt) => {
           this._currentPageNumber = evt.pageNumber;
@@ -6459,7 +6461,7 @@ export default class NtButton extends BaseComponent {
       }
       _bindLink(
         element,
-        { url, newWindow, action, attachment, dest, setOCGState }
+        { url, newWindow, action, attachment, dest, setOCGState },
       ) {
         const { linkService } = this;
         if (url) {
@@ -6479,7 +6481,7 @@ export default class NtButton extends BaseComponent {
           element.onclick = () => {
             this.downloadManager.openOrDownloadData(
               attachment.content,
-              attachment.filename
+              attachment.filename,
             );
             return false;
           };
@@ -6585,14 +6587,14 @@ export default class NtButton extends BaseComponent {
       async _currentOutlineItem() {
         if (!this._isPagesLoaded) {
           throw new Error(
-            '_currentOutlineItem: All pages have not been loaded.'
+            '_currentOutlineItem: All pages have not been loaded.',
           );
         }
         if (!this._outline || !this._pdfDocument) {
           return;
         }
         const pageNumberToDestHash = await this._getPageNumberToDestHash(
-          this._pdfDocument
+          this._pdfDocument,
         );
         if (!pageNumberToDestHash) {
           return;
@@ -6607,7 +6609,7 @@ export default class NtButton extends BaseComponent {
             continue;
           }
           const linkElement = this.container.querySelector(
-            `a[href="${destHash}"]`
+            `a[href="${destHash}"]`,
           );
           if (!linkElement) {
             continue;
@@ -6668,7 +6670,7 @@ export default class NtButton extends BaseComponent {
           }
         }
         this._pageNumberToDestHashCapability.resolve(
-          pageNumberToDestHash.size > 0 ? pageNumberToDestHash : null
+          pageNumberToDestHash.size > 0 ? pageNumberToDestHash : null,
         );
         return this._pageNumberToDestHashCapability.promise;
       }
@@ -6720,7 +6722,7 @@ export default class NtButton extends BaseComponent {
         ) {
           console.warn(
             'Ignoring Spread modes when entering PresentationMode, ' +
-              'since the document may contain varying page sizes.'
+              'since the document may contain varying page sizes.',
           );
           this.#args.spreadMode = pdfViewer.spreadMode;
         }
@@ -6951,7 +6953,7 @@ export default class NtButton extends BaseComponent {
           this.#resetMouseScrollState.bind(this),
           {
             signal,
-          }
+          },
         );
         window.addEventListener('contextmenu', this.#contextMenu.bind(this), {
           signal,
@@ -6986,7 +6988,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal: this.#fullscreenChangeAbortController.signal,
-          }
+          },
         );
       }
       #removeFullscreenChangeListeners() {
@@ -7094,7 +7096,7 @@ export default class NtButton extends BaseComponent {
       size,
       printResolution,
       optionalContentConfigPromise,
-      printAnnotationStoragePromise
+      printAnnotationStoragePromise,
     ) {
       const scratchCanvas = activeService.scratchCanvas;
       const PRINT_UNITS = printResolution / PixelsPerInch.PDF;
@@ -7157,11 +7159,11 @@ export default class NtButton extends BaseComponent {
         body.setAttribute('data-pdfjsprinting', true);
         const { width, height } = this.pagesOverview[0];
         const hasEqualPageSizes = this.pagesOverview.every(
-          (size) => size.width === width && size.height === height
+          (size) => size.width === width && size.height === height,
         );
         if (!hasEqualPageSizes) {
           console.warn(
-            'Not all pages have the same size. The printed result may be incorrect!'
+            'Not all pages have the same size. The printed result may be incorrect!',
           );
         }
         this.pageStyleSheet = document.createElement('style');
@@ -7210,7 +7212,7 @@ export default class NtButton extends BaseComponent {
             this.pagesOverview[index],
             this._printResolution,
             this._optionalContentConfigPromise,
-            this._printAnnotationStoragePromise
+            this._printAnnotationStoragePromise,
           )
             .then(this.useRenderedPage.bind(this))
             .then(function () {
@@ -7322,7 +7324,7 @@ export default class NtButton extends BaseComponent {
         'data-l10n-args',
         JSON.stringify({
           progress,
-        })
+        }),
       );
     }
     window.addEventListener(
@@ -7339,7 +7341,7 @@ export default class NtButton extends BaseComponent {
           event.stopImmediatePropagation();
         }
       },
-      true
+      true,
     );
     if ('onbeforeprint' in window) {
       const stopPropagationIfNeeded = function (event) {
@@ -7422,7 +7424,7 @@ export default class NtButton extends BaseComponent {
         if (this.onIdle) {
           this.idleTimeout = setTimeout(
             this.onIdle.bind(this),
-            CLEANUP_TIMEOUT
+            CLEANUP_TIMEOUT,
           );
         }
       }
@@ -7559,7 +7561,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'dispatcheventinsandbox',
@@ -7568,7 +7570,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'pagechanging',
@@ -7581,7 +7583,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'pagerendered',
@@ -7596,7 +7598,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'pagesdestroy',
@@ -7610,7 +7612,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         try {
           const docProperties = await this.#docProperties(pdfDocument);
@@ -7775,13 +7777,13 @@ export default class NtButton extends BaseComponent {
         const ids = siblings ? [id, ...siblings] : [id];
         for (const elementId of ids) {
           const element = document.querySelector(
-            `[data-element-id="${elementId}"]`
+            `[data-element-id="${elementId}"]`,
           );
           if (element) {
             element.dispatchEvent(
               new CustomEvent('updatefromsandbox', {
                 detail,
-              })
+              }),
             );
           } else {
             this.#pdfDocument?.annotationStorage.setValue(elementId, detail);
@@ -7973,7 +7975,7 @@ export default class NtButton extends BaseComponent {
             break;
           default:
             console.error(
-              `PDFSidebar.switchView: "${view}" is not a valid view.`
+              `PDFSidebar.switchView: "${view}" is not a valid view.`,
             );
             return;
         }
@@ -7981,22 +7983,22 @@ export default class NtButton extends BaseComponent {
         toggleCheckedBtn(
           this.thumbnailButton,
           view === SidebarView.THUMBS,
-          this.thumbnailView
+          this.thumbnailView,
         );
         toggleCheckedBtn(
           this.outlineButton,
           view === SidebarView.OUTLINE,
-          this.outlineView
+          this.outlineView,
         );
         toggleCheckedBtn(
           this.attachmentsButton,
           view === SidebarView.ATTACHMENTS,
-          this.attachmentsView
+          this.attachmentsView,
         );
         toggleCheckedBtn(
           this.layersButton,
           view === SidebarView.LAYERS,
-          this.layersView
+          this.layersView,
         );
         if (forceOpen && !this.isOpen) {
           this.open();
@@ -8057,7 +8059,7 @@ export default class NtButton extends BaseComponent {
       #showUINotification() {
         this.toggleButton.setAttribute(
           'data-l10n-id',
-          'pdfjs-toggle-sidebar-notification-button'
+          'pdfjs-toggle-sidebar-notification-button',
         );
         if (!this.isOpen) {
           this.toggleButton.classList.add(UI_NOTIFICATION_CLASS);
@@ -8070,7 +8072,7 @@ export default class NtButton extends BaseComponent {
         if (reset) {
           this.toggleButton.setAttribute(
             'data-l10n-id',
-            'pdfjs-toggle-sidebar-button'
+            'pdfjs-toggle-sidebar-button',
           );
         }
       }
@@ -8125,7 +8127,7 @@ export default class NtButton extends BaseComponent {
           onTreeLoaded(
             evt.outlineCount,
             this.outlineButton,
-            SidebarView.OUTLINE
+            SidebarView.OUTLINE,
           );
           evt.currentOutlineItemPromise.then((enabled) => {
             if (!this.isInitialViewSet) {
@@ -8138,7 +8140,7 @@ export default class NtButton extends BaseComponent {
           onTreeLoaded(
             evt.attachmentsCount,
             this.attachmentsButton,
-            SidebarView.ATTACHMENTS
+            SidebarView.ATTACHMENTS,
           );
         });
         this.eventBus._on('layersloaded', (evt) => {
@@ -8432,7 +8434,7 @@ export default class NtButton extends BaseComponent {
         renderTask.onContinue = renderContinueCallback;
         const resultPromise = renderTask.promise.then(
           () => this.#finishRenderTask(renderTask, canvas),
-          (error) => this.#finishRenderTask(renderTask, canvas, error)
+          (error) => this.#finishRenderTask(renderTask, canvas, error),
         );
         resultPromise.finally(() => {
           canvas.width = 0;
@@ -8474,7 +8476,7 @@ export default class NtButton extends BaseComponent {
             0,
             0,
             canvas.width,
-            canvas.height
+            canvas.height,
           );
           return canvas;
         }
@@ -8482,7 +8484,7 @@ export default class NtButton extends BaseComponent {
         let reducedHeight = canvas.height << MAX_NUM_SCALING_STEPS;
         const [reducedImage, reducedImageCtx] = TempImageFactory.getCanvas(
           reducedWidth,
-          reducedHeight
+          reducedHeight,
         );
         while (reducedWidth > img.width || reducedHeight > img.height) {
           reducedWidth >>= 1;
@@ -8497,7 +8499,7 @@ export default class NtButton extends BaseComponent {
           0,
           0,
           reducedWidth,
-          reducedHeight
+          reducedHeight,
         );
         while (reducedWidth > 2 * canvas.width) {
           reducedImageCtx.drawImage(
@@ -8509,7 +8511,7 @@ export default class NtButton extends BaseComponent {
             0,
             0,
             reducedWidth >> 1,
-            reducedHeight >> 1
+            reducedHeight >> 1,
           );
           reducedWidth >>= 1;
           reducedHeight >>= 1;
@@ -8523,7 +8525,7 @@ export default class NtButton extends BaseComponent {
           0,
           0,
           canvas.width,
-          canvas.height
+          canvas.height,
         );
         return canvas;
       }
@@ -8563,7 +8565,7 @@ export default class NtButton extends BaseComponent {
         this.scroll = watchScroll(
           this.container,
           this.#scrollUpdated.bind(this),
-          abortSignal
+          abortSignal,
         );
         this.#resetView();
       }
@@ -8586,7 +8588,7 @@ export default class NtButton extends BaseComponent {
         const thumbnailView = this._thumbnails[pageNumber - 1];
         if (!thumbnailView) {
           console.error(
-            'scrollThumbnailIntoView: Invalid "pageNumber" parameter.'
+            'scrollThumbnailIntoView: Invalid "pageNumber" parameter.',
           );
           return;
         }
@@ -8714,7 +8716,7 @@ export default class NtButton extends BaseComponent {
         ) {
           this._pageLabels = null;
           console.error(
-            'PDFThumbnailViewer_setPageLabels: Invalid page labels.'
+            'PDFThumbnailViewer_setPageLabels: Invalid page labels.',
           );
         } else {
           this._pageLabels = labels;
@@ -8752,7 +8754,7 @@ export default class NtButton extends BaseComponent {
         const thumbView = this.renderingQueue.getHighestPriority(
           visibleThumbs,
           this._thumbnails,
-          scrollAhead
+          scrollAhead,
         );
         if (thumbView) {
           this.#ensurePdfPageLoaded(thumbView).then(() => {
@@ -8947,7 +8949,7 @@ export default class NtButton extends BaseComponent {
             },
             {
               signal: this.#eventAbortController.signal,
-            }
+            },
           );
         }
       }
@@ -9164,7 +9166,7 @@ export default class NtButton extends BaseComponent {
         this.#enabled = true;
         this.#textChildren = this.#textChildren.slice();
         this.#textChildren.sort(
-          TextAccessibilityManager.#compareElementPositions
+          TextAccessibilityManager.#compareElementPositions,
         );
         if (this.#textNodes.size > 0) {
           const textChildren = this.#textChildren;
@@ -9246,7 +9248,8 @@ export default class NtButton extends BaseComponent {
         const index = binarySearchFirstItem(
           children,
           (node) =>
-            TextAccessibilityManager.#compareElementPositions(element, node) < 0
+            TextAccessibilityManager.#compareElementPositions(element, node) <
+            0,
         );
         const nodeIndex = Math.max(0, index - 1);
         const child = children[nodeIndex];
@@ -9262,7 +9265,7 @@ export default class NtButton extends BaseComponent {
           return id;
         }
         const children = Array.from(container.childNodes).filter(
-          (node) => node !== element
+          (node) => node !== element,
         );
         if (children.length === 0) {
           return id;
@@ -9273,8 +9276,8 @@ export default class NtButton extends BaseComponent {
           (node) =>
             TextAccessibilityManager.#compareElementPositions(
               elementToCompare,
-              node
-            ) < 0
+              node,
+            ) < 0,
         );
         if (index === 0) {
           children[0].before(element);
@@ -9319,7 +9322,7 @@ export default class NtButton extends BaseComponent {
             },
             {
               signal: this.#eventAbortController.signal,
-            }
+            },
           );
         }
         this._updateMatches();
@@ -9406,7 +9409,7 @@ export default class NtButton extends BaseComponent {
           }
           const content = textContentItemsStr[divIdx].substring(
             fromOffset,
-            toOffset
+            toOffset,
           );
           const node = document.createTextNode(content);
           if (className) {
@@ -9454,14 +9457,14 @@ export default class NtButton extends BaseComponent {
               begin.divIdx,
               begin.offset,
               end.offset,
-              'highlight' + highlightSuffix
+              'highlight' + highlightSuffix,
             );
           } else {
             selectedLeft = appendTextToDiv(
               begin.divIdx,
               begin.offset,
               infinity.offset,
-              'highlight begin' + highlightSuffix
+              'highlight begin' + highlightSuffix,
             );
             for (let n0 = begin.divIdx + 1, n1 = end.divIdx; n0 < n1; n0++) {
               textDivs[n0].className = 'highlight middle' + highlightSuffix;
@@ -9547,7 +9550,7 @@ export default class NtButton extends BaseComponent {
             textContentParams || {
               includeMarkedContent: true,
               disableNormalization: true,
-            }
+            },
           ),
           container: this.div,
           viewport,
@@ -9594,7 +9597,7 @@ export default class NtButton extends BaseComponent {
             const selection = document.getSelection();
             event.clipboardData.setData(
               'text/plain',
-              removeNullCharacters(normalizeUnicode(selection.toString()))
+              removeNullCharacters(normalizeUnicode(selection.toString())),
             );
           }
           event.preventDefault();
@@ -9629,7 +9632,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         var isFirefox, prevRange;
         document.addEventListener(
@@ -9661,7 +9664,7 @@ export default class NtButton extends BaseComponent {
             }
             isFirefox ??=
               getComputedStyle(
-                this.#textLayers.values().next().value
+                this.#textLayers.values().next().value,
               ).getPropertyValue('-moz-user-select') === 'none';
             if (isFirefox) {
               return;
@@ -9685,14 +9688,14 @@ export default class NtButton extends BaseComponent {
               endDiv.style.height = parentTextLayer.style.height;
               anchor.parentElement.insertBefore(
                 endDiv,
-                modifyStart ? anchor : anchor.nextSibling
+                modifyStart ? anchor : anchor.nextSibling,
               );
             }
             prevRange = range.cloneRange();
           },
           {
             signal,
-          }
+          },
         );
       }
     } // CONCATENATED MODULE: ./web/pdf_page_view.js
@@ -9770,7 +9773,7 @@ export default class NtButton extends BaseComponent {
           'data-l10n-args',
           JSON.stringify({
             page: this.id,
-          })
+          }),
         );
         this.div = div;
         this.#setDimensions();
@@ -9778,7 +9781,7 @@ export default class NtButton extends BaseComponent {
         if (this._isStandalone) {
           container?.style.setProperty(
             '--scale-factor',
-            this.scale * PixelsPerInch.PDF_TO_CSS_UNITS
+            this.scale * PixelsPerInch.PDF_TO_CSS_UNITS,
           );
           const { optionalContentConfigPromise } = options;
           if (optionalContentConfigPromise) {
@@ -9867,8 +9870,8 @@ export default class NtButton extends BaseComponent {
               'CanvasText',
               'Canvas',
               'HighlightText',
-              'Highlight'
-            )
+              'Highlight',
+            ),
           );
           this._container?.style.setProperty(
             '--hcm-highlight-selected-filter',
@@ -9877,8 +9880,8 @@ export default class NtButton extends BaseComponent {
               'CanvasText',
               'Canvas',
               'HighlightText',
-              'Highlight'
-            )
+              'Highlight',
+            ),
           );
         }
         this.pdfPage = pdfPage;
@@ -9903,7 +9906,7 @@ export default class NtButton extends BaseComponent {
             pageIndex: this.id - 1,
             eventBus: this.eventBus,
             findController: this.#layerProperties.findController,
-          })
+          }),
         );
       }
       #dispatchLayerRendered(name, error) {
@@ -10113,7 +10116,7 @@ export default class NtButton extends BaseComponent {
         if (this._isStandalone) {
           this._container?.style.setProperty(
             '--scale-factor',
-            this.viewport.scale
+            this.viewport.scale,
           );
         }
         if (this.canvas) {
@@ -10476,7 +10479,7 @@ export default class NtButton extends BaseComponent {
                 onAppend: (annotationEditorLayerDiv) => {
                   this.#addLayer(
                     annotationEditorLayerDiv,
-                    'annotationEditorLayer'
+                    'annotationEditorLayer',
                   );
                 },
               });
@@ -10488,7 +10491,7 @@ export default class NtButton extends BaseComponent {
               showCanvas?.(true);
             }
             return this.#finishRenderTask(renderTask, error);
-          }
+          },
         );
         if (pdfPage.isPureXfa) {
           if (!this.xfaLayer) {
@@ -10514,7 +10517,7 @@ export default class NtButton extends BaseComponent {
           'data-l10n-args',
           JSON.stringify({
             page: this.pageLabel ?? this.id,
-          })
+          }),
         );
         if (this.pageLabel !== null) {
           this.div.setAttribute('data-page-label', this.pageLabel);
@@ -10609,7 +10612,7 @@ export default class NtButton extends BaseComponent {
       #interruptCopyCondition = false;
       #previousContainerHeight = 0;
       #resizeObserver = new ResizeObserver(
-        this.#resizeObserverCallback.bind(this)
+        this.#resizeObserverCallback.bind(this),
       );
       #scrollModePageState = null;
       #scaleTimeoutId = null;
@@ -10618,7 +10621,7 @@ export default class NtButton extends BaseComponent {
         const viewerVersion = '4.4.168';
         if (version !== viewerVersion) {
           throw new Error(
-            `The API version "${version}" does not match the Viewer version "${viewerVersion}".`
+            `The API version "${version}" does not match the Viewer version "${viewerVersion}".`,
           );
         }
         this.container = options.container;
@@ -10681,12 +10684,12 @@ export default class NtButton extends BaseComponent {
           },
           {
             once: true,
-          }
+          },
         );
         this.scroll = watchScroll(
           this.container,
           this._scrollUpdate.bind(this),
-          abortSignal
+          abortSignal,
         );
         this.presentationModeState = PresentationModeState.UNKNOWN;
         this._resetView();
@@ -10981,7 +10984,7 @@ export default class NtButton extends BaseComponent {
             (ev) => (this.#interruptCopyCondition = ev.key === 'Escape'),
             {
               signal: ac.signal,
-            }
+            },
           );
           this.getAllText()
             .then(async (text) => {
@@ -10991,7 +10994,7 @@ export default class NtButton extends BaseComponent {
             })
             .catch((reason) => {
               console.warn(
-                `Something goes wrong when extracting the text: ${reason.message}`
+                `Something goes wrong when extracting the text: ${reason.message}`,
               );
             })
             .finally(() => {
@@ -11036,7 +11039,7 @@ export default class NtButton extends BaseComponent {
         const { signal } = this.#eventAbortController;
         if (pagesCount > PagesCountLimit.FORCE_SCROLL_MODE_PAGE) {
           console.warn(
-            'Forcing PAGE-scrolling for performance reasons, given the length of the document.'
+            'Forcing PAGE-scrolling for performance reasons, given the length of the document.',
           );
           const mode = (this._scrollMode = ScrollMode.PAGE);
           eventBus.dispatch('scrollmodechanged', {
@@ -11051,7 +11054,7 @@ export default class NtButton extends BaseComponent {
               pagesCount,
             });
           },
-          () => {}
+          () => {},
         );
         const onBeforeDraw = (evt) => {
           const pageView = this._pages[evt.pageNumber - 1];
@@ -11104,7 +11107,7 @@ export default class NtButton extends BaseComponent {
                   pageColors,
                   this.#annotationEditorHighlightColors,
                   this.#enableHighlightFloatingButton,
-                  this.#mlManager
+                  this.#mlManager,
                 );
                 eventBus.dispatch('annotationeditoruimanager', {
                   source: this,
@@ -11135,8 +11138,8 @@ export default class NtButton extends BaseComponent {
                   'CanvasText',
                   'Canvas',
                   'HighlightText',
-                  'Highlight'
-                )
+                  'Highlight',
+                ),
               );
               viewer.style.setProperty(
                 '--hcm-highlight-selected-filter',
@@ -11145,8 +11148,8 @@ export default class NtButton extends BaseComponent {
                   'CanvasText',
                   'Canvas',
                   'HighlightText',
-                  'ButtonText'
-                )
+                  'ButtonText',
+                ),
               );
             }
             for (let pageNum = 1; pageNum <= pagesCount; ++pageNum) {
@@ -11187,7 +11190,7 @@ export default class NtButton extends BaseComponent {
                   this.#copyCallback.bind(this, textLayerMode),
                   {
                     signal,
-                  }
+                  },
                 );
               }
               if (this.#annotationEditorUIManager) {
@@ -11222,12 +11225,12 @@ export default class NtButton extends BaseComponent {
                   (reason) => {
                     console.error(
                       `Unable to get page ${pageNum} to initialize viewer`,
-                      reason
+                      reason,
                     );
                     if (--getPagesLeft === 0) {
                       this._pagesCapability.resolve();
                     }
-                  }
+                  },
                 );
                 if (pageNum % PagesCountLimit.PAUSE_EAGER_PAGE_INIT === 0) {
                   await promise;
@@ -11395,7 +11398,7 @@ export default class NtButton extends BaseComponent {
       #setScaleUpdatePages(
         newScale,
         newValue,
-        { noScroll = false, preset = false, drawingDelay = -1, origin = null }
+        { noScroll = false, preset = false, drawingDelay = -1, origin = null },
       ) {
         this._currentScaleValue = newValue.toString();
         if (this.#isSameScale(newScale)) {
@@ -11410,7 +11413,7 @@ export default class NtButton extends BaseComponent {
         }
         this.viewer.style.setProperty(
           '--scale-factor',
-          newScale * PixelsPerInch.PDF_TO_CSS_UNITS
+          newScale * PixelsPerInch.PDF_TO_CSS_UNITS,
         );
         const postponeDrawing = drawingDelay >= 0 && drawingDelay < 1000;
         this.refresh(true, {
@@ -11561,7 +11564,7 @@ export default class NtButton extends BaseComponent {
           Number.isInteger(pageNumber) && this._pages[pageNumber - 1];
         if (!pageView) {
           console.error(
-            `scrollPageIntoView: "${pageNumber}" is not a valid pageNumber parameter.`
+            `scrollPageIntoView: "${pageNumber}" is not a valid pageNumber parameter.`,
           );
           return;
         }
@@ -11637,7 +11640,7 @@ export default class NtButton extends BaseComponent {
             break;
           default:
             console.error(
-              `scrollPageIntoView: "${destArray[1].name}" is not a valid destination type.`
+              `scrollPageIntoView: "${destArray[1].name}" is not a valid destination type.`,
             );
             return;
         }
@@ -11679,7 +11682,7 @@ export default class NtButton extends BaseComponent {
         const container = this.container;
         const topLeft = currentPageView.getPagePoint(
           container.scrollLeft - firstPage.x,
-          container.scrollTop - firstPage.y
+          container.scrollTop - firstPage.y,
         );
         const intLeft = Math.round(topLeft[0]);
         const intTop = Math.round(topLeft[1]);
@@ -11705,7 +11708,7 @@ export default class NtButton extends BaseComponent {
         }
         const newCacheSize = Math.max(
           DEFAULT_CACHE_SIZE,
-          2 * numVisiblePages + 1
+          2 * numVisiblePages + 1,
         );
         this.#buffer.resize(newCacheSize, visible.ids);
         this.renderingQueue.renderHighestPriority(visible);
@@ -11725,7 +11728,7 @@ export default class NtButton extends BaseComponent {
           }
         }
         this._setCurrentPageNumber(
-          stillFullyVisible ? currentId : visiblePages[0].id
+          stillFullyVisible ? currentId : visiblePages[0].id,
         );
         this._updateLocation(visible.first);
         this.eventBus.dispatch('updateviewarea', {
@@ -11824,7 +11827,7 @@ export default class NtButton extends BaseComponent {
           visiblePages,
           this._pages,
           scrollAhead,
-          preRenderExtra
+          preRenderExtra,
         );
         if (pageView) {
           this.#ensurePdfPageLoaded(pageView).then(() => {
@@ -11930,11 +11933,11 @@ export default class NtButton extends BaseComponent {
           viewer = this.viewer;
         viewer.classList.toggle(
           'scrollHorizontal',
-          scrollMode === ScrollMode.HORIZONTAL
+          scrollMode === ScrollMode.HORIZONTAL,
         );
         viewer.classList.toggle(
           'scrollWrapped',
-          scrollMode === ScrollMode.WRAPPED
+          scrollMode === ScrollMode.WRAPPED,
         );
         if (!this.pdfDocument || !pageNumber) {
           return;
@@ -12107,7 +12110,7 @@ export default class NtButton extends BaseComponent {
         const advance = this._getPageAdvance(currentPageNumber, false) || 1;
         this.currentPageNumber = Math.min(
           currentPageNumber + advance,
-          pagesCount
+          pagesCount,
         );
         return true;
       }
@@ -12123,7 +12126,7 @@ export default class NtButton extends BaseComponent {
       updateScale({ drawingDelay, scaleFactor = null, steps = null, origin }) {
         if (steps === null && scaleFactor === null) {
           throw new Error(
-            'Invalid updateScale options: either `steps` or `scaleFactor` must be provided.'
+            'Invalid updateScale options: either `steps` or `scaleFactor` must be provided.',
           );
         }
         if (!this.pdfDocument) {
@@ -12170,7 +12173,7 @@ export default class NtButton extends BaseComponent {
         for (const entry of entries) {
           if (entry.target === this.container) {
             this.#updateContainerHeightCss(
-              Math.floor(entry.borderBoxSize[0].blockSize)
+              Math.floor(entry.borderBoxSize[0].blockSize),
             );
             this.#containerTopLeft = null;
             break;
@@ -12213,7 +12216,7 @@ export default class NtButton extends BaseComponent {
         this.#annotationEditorUIManager.updateMode(
           mode,
           editId,
-          isFromKeyboard
+          isFromKeyboard,
         );
       }
       set annotationEditorParams({ type, value }) {
@@ -12459,7 +12462,7 @@ export default class NtButton extends BaseComponent {
         toggleCheckedBtn(scrollVerticalButton, mode === ScrollMode.VERTICAL);
         toggleCheckedBtn(
           scrollHorizontalButton,
-          mode === ScrollMode.HORIZONTAL
+          mode === ScrollMode.HORIZONTAL,
         );
         toggleCheckedBtn(scrollWrappedButton, mode === ScrollMode.WRAPPED);
         const forceScrollModePage =
@@ -12591,12 +12594,12 @@ export default class NtButton extends BaseComponent {
             ({ uiManager }) => {
               this.#setAnnotationEditorUIManager(
                 uiManager,
-                options.editorHighlightColorPicker
+                options.editorHighlightColorPicker,
               );
             },
             {
               once: true,
-            }
+            },
           );
         }
         eventBus._on('showannotationeditorui', ({ mode }) => {
@@ -12687,7 +12690,7 @@ export default class NtButton extends BaseComponent {
         scaleSelect.oncontextmenu = noContextMenu;
         eventBus._on(
           'annotationeditormodechanged',
-          this.#editorModeChanged.bind(this)
+          this.#editorModeChanged.bind(this),
         );
       }
       #editorModeChanged({ mode }) {
@@ -12704,22 +12707,22 @@ export default class NtButton extends BaseComponent {
         toggleCheckedBtn(
           editorFreeTextButton,
           mode === AnnotationEditorType.FREETEXT,
-          editorFreeTextParamsToolbar
+          editorFreeTextParamsToolbar,
         );
         toggleCheckedBtn(
           editorHighlightButton,
           mode === AnnotationEditorType.HIGHLIGHT,
-          editorHighlightParamsToolbar
+          editorHighlightParamsToolbar,
         );
         toggleCheckedBtn(
           editorInkButton,
           mode === AnnotationEditorType.INK,
-          editorInkParamsToolbar
+          editorInkParamsToolbar,
         );
         toggleCheckedBtn(
           editorStampButton,
           mode === AnnotationEditorType.STAMP,
-          editorStampParamsToolbar
+          editorStampParamsToolbar,
         );
         const isDisable = mode === AnnotationEditorType.DISABLE;
         editorFreeTextButton.disabled = isDisable;
@@ -12741,7 +12744,7 @@ export default class NtButton extends BaseComponent {
               'data-l10n-args',
               JSON.stringify({
                 pagesCount,
-              })
+              }),
             );
           }
           opts.pageNumber.max = pagesCount;
@@ -12753,7 +12756,7 @@ export default class NtButton extends BaseComponent {
             JSON.stringify({
               pageNumber,
               pagesCount,
-            })
+            }),
           );
         } else {
           opts.pageNumber.value = pageNumber;
@@ -12777,7 +12780,7 @@ export default class NtButton extends BaseComponent {
             'data-l10n-args',
             JSON.stringify({
               scale: Math.round(pageScale * 10000) / 100,
-            })
+            }),
           );
         }
       }
@@ -12818,7 +12821,7 @@ export default class NtButton extends BaseComponent {
             }
             this.file = database.files[index];
             this.database = database;
-          }
+          },
         );
       }
       async _writeToStorage() {
@@ -12992,25 +12995,25 @@ export default class NtButton extends BaseComponent {
         if (params.has('disablestream')) {
           AppOptions.set(
             'disableStream',
-            params.get('disablestream') === 'true'
+            params.get('disablestream') === 'true',
           );
         }
         if (params.has('disableautofetch')) {
           AppOptions.set(
             'disableAutoFetch',
-            params.get('disableautofetch') === 'true'
+            params.get('disableautofetch') === 'true',
           );
         }
         if (params.has('disablefontface')) {
           AppOptions.set(
             'disableFontFace',
-            params.get('disablefontface') === 'true'
+            params.get('disablefontface') === 'true',
           );
         }
         if (params.has('disablehistory')) {
           AppOptions.set(
             'disableHistory',
-            params.get('disablehistory') === 'true'
+            params.get('disablehistory') === 'true',
           );
         }
         if (params.has('verbosity')) {
@@ -13025,7 +13028,7 @@ export default class NtButton extends BaseComponent {
             case 'shadow':
             case 'hover':
               viewerContainer.classList.add(
-                `textLayer-${params.get('textlayer')}`
+                `textLayer-${params.get('textlayer')}`,
               );
               try {
                 await loadPDFBug();
@@ -13098,7 +13101,7 @@ export default class NtButton extends BaseComponent {
               appConfig.altTextDialog,
               container,
               this.overlayManager,
-              eventBus
+              eventBus,
             )
           : null;
         const enableHWA = AppOptions.get('enableHWA');
@@ -13118,10 +13121,10 @@ export default class NtButton extends BaseComponent {
           annotationMode: AppOptions.get('annotationMode'),
           annotationEditorMode,
           annotationEditorHighlightColors: AppOptions.get(
-            'highlightEditorColors'
+            'highlightEditorColors',
           ),
           enableHighlightFloatingButton: AppOptions.get(
-            'enableHighlightFloatingButton'
+            'enableHighlightFloatingButton',
           ),
           imageResourcesPath: AppOptions.get('imageResourcesPath'),
           enablePrintAutoRotate: AppOptions.get('enablePrintAutoRotate'),
@@ -13173,7 +13176,7 @@ export default class NtButton extends BaseComponent {
             }
             this.annotationEditorParams = new AnnotationEditorParams(
               appConfig.annotationEditorParams,
-              eventBus
+              eventBus,
             );
           } else {
             for (const id of ['editorModeButtons', 'editorModeSeparator']) {
@@ -13187,7 +13190,7 @@ export default class NtButton extends BaseComponent {
             this.overlayManager,
             eventBus,
             l10n,
-            () => this._docFilename
+            () => this._docFilename,
           );
         }
         if (appConfig.secondaryToolbar?.cursorHandToolButton) {
@@ -13203,7 +13206,7 @@ export default class NtButton extends BaseComponent {
         if (appConfig.secondaryToolbar) {
           this.secondaryToolbar = new SecondaryToolbar(
             appConfig.secondaryToolbar,
-            eventBus
+            eventBus,
           );
         }
         if (
@@ -13220,7 +13223,7 @@ export default class NtButton extends BaseComponent {
           this.passwordPrompt = new PasswordPrompt(
             appConfig.passwordOverlay,
             this.overlayManager,
-            this.isViewerEmbedded
+            this.isViewerEmbedded,
           );
         }
         if (appConfig.sidebar?.outlineView) {
@@ -13263,7 +13266,7 @@ export default class NtButton extends BaseComponent {
               }
             }
             this.pdfThumbnailViewer.scrollThumbnailIntoView(
-              pdfViewer.currentPageNumber
+              pdfViewer.currentPageNumber,
             );
           };
         }
@@ -13328,7 +13331,7 @@ export default class NtButton extends BaseComponent {
         }
         if (!this.supportsFullscreen) {
           appConfig.secondaryToolbar?.presentationModeButton.classList.add(
-            'hidden'
+            'hidden',
           );
         }
         if (this.supportsIntegratedFind) {
@@ -13349,7 +13352,7 @@ export default class NtButton extends BaseComponent {
         return shadow(
           this,
           'mlManager',
-          AppOptions.get('enableML') === true ? new MLManager() : null
+          AppOptions.get('enableML') === true ? new MLManager() : null,
         );
       },
       get initialized() {
@@ -13400,14 +13403,14 @@ export default class NtButton extends BaseComponent {
         return shadow(
           this,
           'supportsPinchToZoom',
-          AppOptions.get('supportsPinchToZoom')
+          AppOptions.get('supportsPinchToZoom'),
         );
       },
       get supportsIntegratedFind() {
         return shadow(
           this,
           'supportsIntegratedFind',
-          AppOptions.get('supportsIntegratedFind')
+          AppOptions.get('supportsIntegratedFind'),
         );
       },
       get loadingBar() {
@@ -13419,14 +13422,14 @@ export default class NtButton extends BaseComponent {
         return shadow(
           this,
           'supportsMouseWheelZoomCtrlKey',
-          AppOptions.get('supportsMouseWheelZoomCtrlKey')
+          AppOptions.get('supportsMouseWheelZoomCtrlKey'),
         );
       },
       get supportsMouseWheelZoomMetaKey() {
         return shadow(
           this,
           'supportsMouseWheelZoomMetaKey',
-          AppOptions.get('supportsMouseWheelZoomMetaKey')
+          AppOptions.get('supportsMouseWheelZoomMetaKey'),
         );
       },
       get supportsCaretBrowsingMode() {
@@ -13436,7 +13439,7 @@ export default class NtButton extends BaseComponent {
         this._caretBrowsing ||= new CaretBrowsingMode(
           this.appConfig.mainContainer,
           this.appConfig.viewerContainer,
-          this.appConfig.toolbar?.container
+          this.appConfig.toolbar?.container,
         );
         this._caretBrowsing.moveCaret(isUp, select);
       },
@@ -13525,7 +13528,7 @@ export default class NtButton extends BaseComponent {
         this._hasAnnotationEditors = false;
         promises.push(
           this.pdfScriptingManager.destroyPromise,
-          this.passwordPrompt.close()
+          this.passwordPrompt.close(),
         );
         this.setTitle();
         this.pdfSidebar?.reset();
@@ -13586,7 +13589,7 @@ export default class NtButton extends BaseComponent {
             }).then(() => {
               throw reason;
             });
-          }
+          },
         );
       },
       async download(options = {}) {
@@ -13600,7 +13603,7 @@ export default class NtButton extends BaseComponent {
           data,
           this._downloadUrl,
           this._docFilename,
-          options
+          options,
         );
       },
       async save(options = {}) {
@@ -13615,7 +13618,7 @@ export default class NtButton extends BaseComponent {
             data,
             this._downloadUrl,
             this._docFilename,
-            options
+            options,
           );
         } catch (reason) {
           console.error(`Error when saving the document: ${reason.message}`);
@@ -13646,7 +13649,7 @@ export default class NtButton extends BaseComponent {
         this._unblockDocumentLoadEvent();
         const message = await this._otherError(
           key || 'pdfjs-loading-error',
-          moreInfo
+          moreInfo,
         );
         this.eventBus.dispatch('documenterror', {
           source: this,
@@ -13715,7 +13718,7 @@ export default class NtButton extends BaseComponent {
         const { firstPagePromise, onePageRendered, pagesPromise } = pdfViewer;
         this.pdfThumbnailViewer?.setDocument(pdfDocument);
         const storedPromise = (this.store = new ViewHistory(
-          pdfDocument.fingerprints[0]
+          pdfDocument.fingerprints[0],
         ))
           .getMultiple({
             page: null,
@@ -13806,7 +13809,7 @@ export default class NtButton extends BaseComponent {
                 this.initialBookmark = initialBookmark;
                 pdfViewer.currentScaleValue = pdfViewer.currentScaleValue;
                 this.setInitialView(hash);
-              }
+              },
             )
             .catch(() => {
               this.setInitialView();
@@ -13824,7 +13827,7 @@ export default class NtButton extends BaseComponent {
             this._documentError('pdfjs-loading-error', {
               message: reason.message,
             });
-          }
+          },
         );
         onePageRendered.then((data) => {
           this.externalServices.reportTelemetry({
@@ -13862,7 +13865,7 @@ export default class NtButton extends BaseComponent {
                   optionalContentConfig,
                   pdfDocument,
                 });
-              }
+              },
             );
           }
         });
@@ -13925,7 +13928,7 @@ export default class NtButton extends BaseComponent {
                 continue;
             }
             triggerAutoPrint = jsActions[name].some((js) =>
-              AutoPrintRegExp.test(js)
+              AutoPrintRegExp.test(js),
             );
           }
         }
@@ -13948,7 +13951,7 @@ export default class NtButton extends BaseComponent {
             `${(info.Producer || '-').trim()} / ${(
               info.Creator || '-'
             ).trim()}] ` +
-            `(PDF.js: ${version || '?'} [${build || '?'}])`
+            `(PDF.js: ${version || '?'} [${build || '?'}])`,
         );
         let pdfTitle = info.Title;
         const metadataTitle = metadata?.get('dc:title');
@@ -13962,7 +13965,7 @@ export default class NtButton extends BaseComponent {
         }
         if (pdfTitle) {
           this.setTitle(
-            `${pdfTitle} - ${this._contentDispositionFilename || this._title}`
+            `${pdfTitle} - ${this._contentDispositionFilename || this._title}`,
           );
         } else if (this._contentDispositionFilename) {
           this.setTitle(this._contentDispositionFilename);
@@ -13985,7 +13988,7 @@ export default class NtButton extends BaseComponent {
         }
         if (info.IsSignaturesPresent) {
           console.warn(
-            'Warning: Digital signatures validation is not supported'
+            'Warning: Digital signatures validation is not supported',
           );
         }
         this.eventBus.dispatch('metadataloaded', {
@@ -14022,7 +14025,7 @@ export default class NtButton extends BaseComponent {
         toolbar?.setPagesCount(numLabels, true);
         toolbar?.setPageNumber(
           pdfViewer.currentPageNumber,
-          pdfViewer.currentPageLabel
+          pdfViewer.currentPageLabel,
         );
       },
       _initializePdfHistory({ fingerprint, viewOnLoad, initialDest = null }) {
@@ -14070,7 +14073,7 @@ export default class NtButton extends BaseComponent {
       },
       setInitialView(
         storedHash,
-        { rotation, sidebarView, scrollMode, spreadMode } = {}
+        { rotation, sidebarView, scrollMode, spreadMode } = {},
       ) {
         const setRotation = (angle) => {
           if (isValidRotation(angle)) {
@@ -14099,7 +14102,7 @@ export default class NtButton extends BaseComponent {
         }
         this.toolbar?.setPageNumber(
           this.pdfViewer.currentPageNumber,
-          this.pdfViewer.currentPageLabel
+          this.pdfViewer.currentPageLabel,
         );
         this.secondaryToolbar?.setPageNumber(this.pdfViewer.currentPageNumber);
         if (!this.pdfViewer.currentScaleValue) {
@@ -14238,7 +14241,7 @@ export default class NtButton extends BaseComponent {
           webViewerPresentationModeChanged,
           {
             signal,
-          }
+          },
         );
         eventBus._on('presentationmode', webViewerPresentationMode, {
           signal,
@@ -14248,14 +14251,14 @@ export default class NtButton extends BaseComponent {
           webViewerSwitchAnnotationEditorMode,
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'switchannotationeditorparams',
           webViewerSwitchAnnotationEditorParams,
           {
             signal,
-          }
+          },
         );
         eventBus._on('print', webViewerPrint, {
           signal,
@@ -14322,14 +14325,14 @@ export default class NtButton extends BaseComponent {
           webViewerUpdateFindMatchesCount,
           {
             signal,
-          }
+          },
         );
         eventBus._on(
           'updatefindcontrolstate',
           webViewerUpdateFindControlState,
           {
             signal,
-          }
+          },
         );
         eventBus._on('fileinputchange', webViewerFileInputChange, {
           signal,
@@ -14353,7 +14356,7 @@ export default class NtButton extends BaseComponent {
             webViewerResolutionChange(evt);
           }
           const mediaQueryList = window.matchMedia(
-            `(resolution: ${window.devicePixelRatio || 1}dppx)`
+            `(resolution: ${window.devicePixelRatio || 1}dppx)`,
           );
           mediaQueryList.addEventListener('change', addWindowResolutionChange, {
             once: true,
@@ -14398,7 +14401,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         window.addEventListener(
           'hashchange',
@@ -14410,7 +14413,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         window.addEventListener(
           'beforeprint',
@@ -14421,7 +14424,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         window.addEventListener(
           'afterprint',
@@ -14432,7 +14435,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         window.addEventListener(
           'updatefromsandbox',
@@ -14444,7 +14447,7 @@ export default class NtButton extends BaseComponent {
           },
           {
             signal,
-          }
+          },
         );
         if (!('onscrollend' in document.documentElement)) {
           return;
@@ -14578,7 +14581,7 @@ export default class NtButton extends BaseComponent {
       }
       if (PDFViewerApplication.pdfSidebar?.visibleView === SidebarView.THUMBS) {
         const pageView = PDFViewerApplication.pdfViewer.getPageView(
-          pageNumber - 1
+          pageNumber - 1,
         );
         const thumbnailView =
           PDFViewerApplication.pdfThumbnailViewer?.getThumbnail(pageNumber - 1);
@@ -14657,7 +14660,7 @@ export default class NtButton extends BaseComponent {
       }
       if (PDFViewerApplication.appConfig.secondaryToolbar) {
         const href = PDFViewerApplication.pdfLinkService.getAnchorUrl(
-          location.pdfOpenParams
+          location.pdfOpenParams,
         );
         PDFViewerApplication.appConfig.secondaryToolbar.viewBookmarkButton.href =
           href;
@@ -14771,7 +14774,7 @@ export default class NtButton extends BaseComponent {
       ) {
         PDFViewerApplication.toolbar?.setPageNumber(
           pdfViewer.currentPageNumber,
-          pdfViewer.currentPageLabel
+          pdfViewer.currentPageLabel,
         );
       }
     }
@@ -14811,7 +14814,7 @@ export default class NtButton extends BaseComponent {
     function webViewerUpdateFindMatchesCount({ matchesCount }) {
       if (PDFViewerApplication.supportsIntegratedFind) {
         PDFViewerApplication.externalServices.updateFindMatchesCount(
-          matchesCount
+          matchesCount,
         );
       } else {
         PDFViewerApplication.findBar?.updateResultsCount(matchesCount);
@@ -14836,7 +14839,7 @@ export default class NtButton extends BaseComponent {
         PDFViewerApplication.findBar?.updateUIState(
           state,
           previous,
-          matchesCount
+          matchesCount,
         );
       }
     }
@@ -14857,14 +14860,14 @@ export default class NtButton extends BaseComponent {
       PDFViewerApplication.secondaryToolbar?.setPageNumber(pageNumber);
       if (PDFViewerApplication.pdfSidebar?.visibleView === SidebarView.THUMBS) {
         PDFViewerApplication.pdfThumbnailViewer?.scrollThumbnailIntoView(
-          pageNumber
+          pageNumber,
         );
       }
       const currentPage = PDFViewerApplication.pdfViewer.getPageView(
-        pageNumber - 1
+        pageNumber - 1,
       );
       PDFViewerApplication.toolbar?.updateLoadingIndicatorState(
-        currentPage?.renderingState === RenderingStates.RUNNING
+        currentPage?.renderingState === RenderingStates.RUNNING,
       );
     }
     function webViewerResolutionChange(evt) {
@@ -14923,7 +14926,7 @@ export default class NtButton extends BaseComponent {
           scaleFactor = PDFViewerApplication._accumulateFactor(
             pdfViewer.currentScale,
             scaleFactor,
-            '_wheelUnusedFactor'
+            '_wheelUnusedFactor',
           );
           PDFViewerApplication.updateZoom(null, scaleFactor, origin);
         } else {
@@ -14938,14 +14941,14 @@ export default class NtButton extends BaseComponent {
             } else {
               ticks = PDFViewerApplication._accumulateTicks(
                 delta,
-                '_wheelUnusedTicks'
+                '_wheelUnusedTicks',
               );
             }
           } else {
             const PIXELS_PER_LINE_SCALE = 30;
             ticks = PDFViewerApplication._accumulateTicks(
               delta / PIXELS_PER_LINE_SCALE,
-              '_wheelUnusedTicks'
+              '_wheelUnusedTicks',
             );
           }
           PDFViewerApplication.updateZoom(ticks, null, origin);
@@ -15051,14 +15054,14 @@ export default class NtButton extends BaseComponent {
         const newScaleFactor = PDFViewerApplication._accumulateFactor(
           pdfViewer.currentScale,
           distance / pDistance,
-          '_touchUnusedFactor'
+          '_touchUnusedFactor',
         );
         PDFViewerApplication.updateZoom(null, newScaleFactor, origin);
       } else {
         const PIXELS_PER_LINE_SCALE = 30;
         const ticks = PDFViewerApplication._accumulateTicks(
           (distance - pDistance) / PIXELS_PER_LINE_SCALE,
-          '_touchUnusedTicks'
+          '_touchUnusedTicks',
         );
         PDFViewerApplication.updateZoom(ticks, null, origin);
       }
@@ -15430,22 +15433,22 @@ export default class NtButton extends BaseComponent {
           print: shadowRoot.getElementById('print'),
           editorFreeTextButton: shadowRoot.getElementById('editorFreeText'),
           editorFreeTextParamsToolbar: shadowRoot.getElementById(
-            'editorFreeTextParamsToolbar'
+            'editorFreeTextParamsToolbar',
           ),
           editorHighlightButton: shadowRoot.getElementById('editorHighlight'),
           editorHighlightParamsToolbar: shadowRoot.getElementById(
-            'editorHighlightParamsToolbar'
+            'editorHighlightParamsToolbar',
           ),
           editorHighlightColorPicker: shadowRoot.getElementById(
-            'editorHighlightColorPicker'
+            'editorHighlightColorPicker',
           ),
           editorInkButton: shadowRoot.getElementById('editorInk'),
           editorInkParamsToolbar: shadowRoot.getElementById(
-            'editorInkParamsToolbar'
+            'editorInkParamsToolbar',
           ),
           editorStampButton: shadowRoot.getElementById('editorStamp'),
           editorStampParamsToolbar: shadowRoot.getElementById(
-            'editorStampParamsToolbar'
+            'editorStampParamsToolbar',
           ),
           download: shadowRoot.getElementById('download'),
         },
@@ -15496,7 +15499,7 @@ export default class NtButton extends BaseComponent {
           highlightAllCheckbox: shadowRoot.getElementById('findHighlightAll'),
           caseSensitiveCheckbox: shadowRoot.getElementById('findMatchCase'),
           matchDiacriticsCheckbox: shadowRoot.getElementById(
-            'findMatchDiacritics'
+            'findMatchDiacritics',
           ),
           entireWordCheckbox: shadowRoot.getElementById('findEntireWord'),
           findMsg: shadowRoot.getElementById('findMsg'),
@@ -15523,7 +15526,7 @@ export default class NtButton extends BaseComponent {
             keywords: shadowRoot.getElementById('keywordsField'),
             creationDate: shadowRoot.getElementById('creationDateField'),
             modificationDate: shadowRoot.getElementById(
-              'modificationDateField'
+              'modificationDateField',
             ),
             creator: shadowRoot.getElementById('creatorField'),
             producer: shadowRoot.getElementById('producerField'),
@@ -15543,7 +15546,7 @@ export default class NtButton extends BaseComponent {
         },
         annotationEditorParams: {
           editorFreeTextFontSize: shadowRoot.getElementById(
-            'editorFreeTextFontSize'
+            'editorFreeTextFontSize',
           ),
           editorFreeTextColor: shadowRoot.getElementById('editorFreeTextColor'),
           editorInkColor: shadowRoot.getElementById('editorInkColor'),
@@ -15551,10 +15554,10 @@ export default class NtButton extends BaseComponent {
           editorInkOpacity: shadowRoot.getElementById('editorInkOpacity'),
           editorStampAddImage: shadowRoot.getElementById('editorStampAddImage'),
           editorFreeHighlightThickness: shadowRoot.getElementById(
-            'editorFreeHighlightThickness'
+            'editorFreeHighlightThickness',
           ),
           editorHighlightShowAll: shadowRoot.getElementById(
-            'editorHighlightShowAll'
+            'editorHighlightShowAll',
           ),
         },
         printContainer: shadowRoot.getElementById('printContainer'),

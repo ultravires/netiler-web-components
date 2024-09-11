@@ -12,7 +12,7 @@ import {
 import workerSrc from './build/pdf.worker.mjs?worker&url';
 
 export default class NtButton extends BaseComponent {
-  static componentName = 'nt-pdf-viewer';
+  static componentName = 'nt-pdf-viewer-simple';
 
   static get observedAttributes() {
     return ['file'];
@@ -42,7 +42,6 @@ export default class NtButton extends BaseComponent {
 
   async connectedCallback() {
     this.render();
-    this._initPDFViewer();
     this.renderPDF();
   }
 
@@ -72,7 +71,7 @@ export default class NtButton extends BaseComponent {
           `${(info.Producer || '-').trim()} / ${(
             info.Creator || '-'
           ).trim()}] ` +
-          `(PDF.js: ${version || '?'} [${build || '?'}])`
+          `(PDF.js: ${version || '?'} [${build || '?'}])`,
       );
       pdf = pdfDocument;
       const observer = new IntersectionObserver(
@@ -89,7 +88,7 @@ export default class NtButton extends BaseComponent {
           root: null,
           rootMargin: '0px',
           threshold: 0.0,
-        }
+        },
       );
       for (let num = 1; num <= pdf.numPages; num++) {
         const page = createEmptyPage(num);
@@ -163,7 +162,7 @@ export default class NtButton extends BaseComponent {
         },
         (reason) => {
           console.error(reason);
-        }
+        },
       );
     }
   }

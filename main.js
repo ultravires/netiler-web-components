@@ -1,6 +1,7 @@
-import NetilerUI from '/dist/index.js';
+// import NetilerUI from "/dist/index.js";
+import NetilerUI from '/packages/index.js';
 import '/packages/theme/default/index.css';
-// import '/dist/style.css';
+
 import 'virtual:uno.css';
 
 NetilerUI.getComponent('NtIcon').iconURL =

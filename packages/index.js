@@ -5,8 +5,8 @@ import NtIcon from './icon';
 import NtLoading from './loading';
 import NtMarquee from './marquee';
 import NtPdfViewer from './pdfviewer';
+import NtPdfViewerSimple from './pdfviewer/simple';
 import NtTable from './table';
-
 
 const components = [
   NtButton,
@@ -16,7 +16,8 @@ const components = [
   NtLoading,
   NtMarquee,
   NtPdfViewer,
-  NtTable
+  NtPdfViewerSimple,
+  NtTable,
 ];
 
 const componentMap = {
@@ -27,19 +28,20 @@ const componentMap = {
   NtLoading,
   NtMarquee,
   NtPdfViewer,
-  NtTable
+  NtPdfViewerSimple,
+  NtTable,
 };
 
 export default {
-  define( options ) {
+  define(options) {
     let len = components.length;
-    while ( len ) {
+    while (len) {
       const component = components[len - 1];
-      component.define( options );
+      component.define(options);
       len -= 1;
     }
   },
-  getComponent( componentName ) {
+  getComponent(componentName) {
     return componentMap[componentName];
-  }
-}
+  },
+};
